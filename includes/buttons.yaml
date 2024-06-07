@@ -1,4 +1,3 @@
-
 binary_sensor:
   - platform: gpio
     id: hw_btn_left
@@ -11,13 +10,15 @@ binary_sensor:
       - max_length: 1.8s
         then:
           - logger.log: "Left button - Short click"
-          - lambda: |-
-            id(mqtt).publish("node/button/hw0", "short");
+          - lambda: |
+              id(mqtt_client).publish("node/button/hw0", "short");
       - min_length: 2s
+        max_length: 10s
         then:
           - logger.log: "Left button - Long click"
-          - lambda: |-
-            id(mqtt).publish("node/button/hw0", "long");
+          - lambda: |
+              id(mqtt_client).publish("node/button/hw0", "long");
+
   - platform: gpio
     id: hw_btn_right
     pin:
@@ -29,10 +30,11 @@ binary_sensor:
       - max_length: 1.8s
         then:
           - logger.log: "Left button - Short click"
-          - lambda: |-
-            id(mqtt).publish("node/button/hw0", "short");
+          - lambda: |
+              id(mqtt_client).publish("node/button/hw0", "short");
       - min_length: 2s
+        max_length: 10s
         then:
           - logger.log: "Left button - Long click"
-          - lambda: |-
-            id(mqtt).publish("node/button/hw0", "long");
+          - lambda: |
+              id(mqtt_client).publish("node/button/hw0", "long");

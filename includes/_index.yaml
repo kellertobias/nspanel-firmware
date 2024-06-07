@@ -1,4 +1,4 @@
-<<: !include includes/_defaults.yaml
+<<: !include _defaults.yaml
 
 esp32:
   board: esp32dev
@@ -18,25 +18,25 @@ web_server:
 
 packages:
   # Includes Wifi and Wifi Status Updates
-  wifi: !include includes/wifi.yaml
+  wifi: !include wifi.yaml
 
   # Includes MQTT and Subscribing to Topics
-  mqtt: !include includes/mqtt.yaml
+  mqtt: !include mqtt.yaml
 
   # Includes the Hardware Relays as Home Assistant Switches
-  relay: !include includes/relay.yaml
+  relays: !include relays.yaml
 
   # Includes the Hardware Buttons as Home Assistant that publish to MQTT
-  buttons: !include includes/buttons.yaml
+  buttons: !include buttons.yaml
 
   # Includes the Display and Display Logic including touch switches that publish to MQTT
-  display: !include includes/display.yaml
+  display: !include display.yaml
 
   # Includes the notification speaker
-  speaker: !include includes/speaker.yaml
+  speaker: !include speaker.yaml
 
   # Includes the onboard sensors
-  sensors: !include includes/sensors.yaml
+  sensors: !include sensors.yaml
 
   # Includes miscalaneous, e.g. reboot
-  misc: !include includes/misc.yaml
+  misc: !include misc.yaml

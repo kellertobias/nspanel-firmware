@@ -1,4 +1,4 @@
-defaults:
+substitutions:
   tft_url: "http://"
   mqtt_broker: 192.168.0.1
   long_click_time: 2s

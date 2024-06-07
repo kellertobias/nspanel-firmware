@@ -1,14 +1,14 @@
 wifi:
-  id: wifi_component
+  id: wifi_connection
   power_save_mode: LIGHT
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
-  on_connect:
-    then:
-      - script.execute: refresh_wifi_icon
-  on_disconnect:
-    then:
-      - script.execute: refresh_wifi_icon
+  ssid: wifi_ssid
+  password: wifi_password
+  # on_connect:
+  #   then:
+  #     - script.execute: refresh_wifi_icon
+  # on_disconnect:
+  #   then:
+  #     - script.execute: refresh_wifi_icon
 
 sensor:
   - platform: wifi_signal
@@ -19,11 +19,11 @@ sensor:
       then:
         lambda: |
           if (id(disp).has_nextion()) {
-            id(disp).set_component_text("wifi", id(wifi_signal).state);
+            id(disp).set_component_text("wifi", id(wifi_connection).state);
           }
-          if (id(wifi_signal).state < -70) {
+          if (id(wifi_connection).state < -70) {
             id(disp).set_component_background_color("wifi", 0xFF0000);
-          } else if (id(wifi_signal).state < -60) {
+          } else if (id(wifi_connection).state < -60) {
             id(disp).set_component_background_color("wifi", 0xFFA500);
           } else {
             id(disp).set_component_background_color("wifi", 0x00FF00);

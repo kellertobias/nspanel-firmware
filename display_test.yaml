@@ -5,5 +5,6 @@ esphome:
 
 substitutions:
   devicename: "testdevice"
+  button_left_text: "Night/ Day Mode"
 
-<<: !include display.yaml
+<<: !include includes/_index.yaml
