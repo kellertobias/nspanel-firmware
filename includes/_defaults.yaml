@@ -1,0 +1,158 @@
+defaults:
+  tft_url: "http://"
+  mqtt_broker: 192.168.0.1
+  long_click_time: 2s
+
+  # Hardware Buttons
+  button_left_topic: "button/room/hw0"
+  button_left_text: "Left Button"
+  button_right_topic: "button/room/hw1"
+  button_right_text: "Right Button"
+
+  # Display States
+  topic_room_temp: "sensors/room/temp"
+  topic_room_hum: "sensors/room/hum"
+  topic_room_light: "sensors/room/light"
+  topic_weaher_temp: "sensors/weather/temp"
+  topic_weather_rain: "sensors/weather/rain"
+  topic_weather_rain_intensity: "sensors/weather/rain_intensity"
+  topic_weather_icon: "sensors/weather/icon"
+  topic_windows_open: "sensors/windows/open"
+
+  # climate states
+  topic_climate_temp: "climate/room/temp"
+  topic_climate_power: "climate/room/power"
+  topic_blinds_position: "blinds/room/position"
+
+  # generic texts
+  name_btn_scenes: "SCENES"
+  icon_btn_scenes: "1"
+
+  name_btn_environment: "CLIMATE"
+  icon_btn_environment: "1"
+
+  name_btn_misc: "MISC"
+  icon_btn_misc: "1"
+
+  misc_info_text: |
+    Guest Wifi
+    SSID: GuestWifi
+    Password: 12345678
+
+  qr_code_text: "ABC12345678"
+
+  # button names and topics
+  topic_btn_scn11: "button/room/scn11"
+  name_btn_scn01: "Scene 1"
+  icon_btn_scn01: "1"
+
+  topic_btn_scn12: "button/room/scn12"
+  name_btn_scn02: "Scene 2"
+  icon_btn_scn02: "1"
+
+  topic_btn_scn13: "button/room/scn13"
+  name_btn_scn03: "Scene 3"
+  icon_btn_scn03: "1"
+
+  topic_btn_scn14: "button/room/scn14"
+  name_btn_scn04: "Scene 4"
+  icon_btn_scn04: "1"
+
+  topic_btn_scn15: "button/room/scn15"
+  name_btn_scn05: "Scene 5"
+  icon_btn_scn05: "1"
+
+  topic_btn_scn16: "button/room/scn16"
+  name_btn_scn06: "Scene 6"
+  icon_btn_scn06: "1"
+
+  topic_btn_scn17: "button/room/scn17"
+  name_btn_scn07: "Scene 7"
+  icon_btn_scn07: "1"
+
+  topic_btn_scn18: "button/room/scn18"
+  name_btn_scn08: "Scene 8"
+  icon_btn_scn08: "1"
+
+  # Page 2
+  topic_btn_scn21: "button/room/scn21"
+  name_btn_scn21: "Scene 9"
+  icon_btn_scn21: "1"
+
+  topic_btn_scn22: "button/room/scn22"
+  name_btn_scn22: "Scene 10"
+  icon_btn_scn22: "1"
+
+  topic_btn_scn23: "button/room/scn23"
+  name_btn_scn23: "Scene 11"
+  icon_btn_scn23: "1"
+
+  topic_btn_scn24: "button/room/scn24"
+  name_btn_scn24: "Scene 12"
+  icon_btn_scn24: "1"
+
+  topic_btn_scn25: "button/room/scn25"
+  name_btn_scn25: "Scene 13"
+  icon_btn_scn25: "1"
+
+  topic_btn_scn26: "button/room/scn26"
+  name_btn_scn26: "Scene 14"
+  icon_btn_scn26: "1"
+
+  topic_btn_scn27: "button/room/scn27"
+  name_btn_scn27: "Scene 15"
+  icon_btn_scn27: "1"
+
+  topic_btn_scn28: "button/room/scn28"
+  name_btn_scn28: "Scene 16"
+  icon_btn_scn28: "1"
+
+  # Page Environment
+  topic_btn_env01: "button/room/env01"
+  name_btn_env01: "Scene 17"
+  icon_btn_env01: "1"
+
+  topic_btn_env02: "button/room/env02"
+  name_btn_env02: "Scene 18"
+  icon_btn_env02: "1"
+
+  topic_btn_env03: "button/room/env03"
+  name_btn_env03: "Scene 19"
+  icon_btn_env03: "1"
+
+  topic_btn_env04: "button/room/env04"
+  name_btn_env04: "Scene 20"
+  icon_btn_env04: "1"
+
+  # Page Misc
+  topic_btn_misc1: "button/room/misc1"
+  name_btn_misc1: "Misc 1"
+  icon_btn_misc1: "1"
+
+  topic_btn_misc2: "button/room/misc2"
+  name_btn_misc2: "Misc 2"
+  icon_btn_misc2: "1"
+
+  topic_btn_misc3: "button/room/misc3"
+  name_btn_misc3: "Misc 3"
+  icon_btn_misc3: "1"
+
+  topic_btn_misc4: "button/room/misc4"
+  name_btn_misc4: "Misc 4"
+  icon_btn_misc4: "1"
+
+  topic_btn_misc5: "button/room/misc5"
+  name_btn_misc5: "Misc 5"
+  icon_btn_misc5: "1"
+
+  topic_btn_misc6: "button/room/misc6"
+  name_btn_misc6: "Misc 6"
+  icon_btn_misc6: "1"
+
+  topic_btn_misc7: "button/room/misc7"
+  name_btn_misc7: "Misc 7"
+  icon_btn_misc7: "1"
+
+  topic_btn_misc8: "button/room/misc8"
+  name_btn_misc8: "Misc 8"
+  icon_btn_misc8: "1"

@@ -1,0 +1,38 @@
+
+binary_sensor:
+  - platform: gpio
+    id: hw_btn_left
+    pin:
+      number: 14
+      inverted: true
+    filters:
+      - delayed_on: 50ms
+    on_click:
+      - max_length: 1.8s
+        then:
+          - logger.log: "Left button - Short click"
+          - lambda: |-
+            id(mqtt).publish("node/button/hw0", "short");
+      - min_length: 2s
+        then:
+          - logger.log: "Left button - Long click"
+          - lambda: |-
+            id(mqtt).publish("node/button/hw0", "long");
+  - platform: gpio
+    id: hw_btn_right
+    pin:
+      number: 27
+      inverted: true
+    filters:
+      - delayed_on: 50ms
+    on_click:
+      - max_length: 1.8s
+        then:
+          - logger.log: "Left button - Short click"
+          - lambda: |-
+            id(mqtt).publish("node/button/hw0", "short");
+      - min_length: 2s
+        then:
+          - logger.log: "Left button - Long click"
+          - lambda: |-
+            id(mqtt).publish("node/button/hw0", "long");

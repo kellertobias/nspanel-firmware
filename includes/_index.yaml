@@ -1,0 +1,42 @@
+<<: !include includes/_defaults.yaml
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+api:
+  reboot_timeout: 60min
+
+ota:
+  on_begin:
+    - lambda: |-
+        id(disp).set_brightness(100);
+
+web_server:
+  port: 80
+
+packages:
+  # Includes Wifi and Wifi Status Updates
+  wifi: !include includes/wifi.yaml
+
+  # Includes MQTT and Subscribing to Topics
+  mqtt: !include includes/mqtt.yaml
+
+  # Includes the Hardware Relays as Home Assistant Switches
+  relay: !include includes/relay.yaml
+
+  # Includes the Hardware Buttons as Home Assistant that publish to MQTT
+  buttons: !include includes/buttons.yaml
+
+  # Includes the Display and Display Logic including touch switches that publish to MQTT
+  display: !include includes/display.yaml
+
+  # Includes the notification speaker
+  speaker: !include includes/speaker.yaml
+
+  # Includes the onboard sensors
+  sensors: !include includes/sensors.yaml
+
+  # Includes miscalaneous, e.g. reboot
+  misc: !include includes/misc.yaml

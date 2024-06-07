@@ -1,0 +1,50 @@
+mqtt:
+  id: mqtt
+  broker: 192.168.0.1
+  username: mqtt_user
+  # password: !secret mqtt_passwod
+
+  on_message:
+    - topic:
+        lambda: |
+          return id(topic_1).value;
+      then:
+        lambda: |
+          id(disp).set_brightness(message == "ON" ? 100 : 0);
+    - topic: "sensors/bedroom/temp"
+      then:
+        lambda: |
+          id(disp).set_component_text("temp", message);
+    - topic: "sensors/bedroom/hum"
+      then:
+        lambda: |
+          id(disp).set_component_text("hum", message);
+    - topic: "sensors/weather/temp"
+      then:
+        lambda: |
+          id(disp).set_component_text("temp2", message);
+    - topic: "sensors/weather/rain"
+      then:
+        lambda: |
+          id(disp).set_component_text("rain", message);
+    - topic: "sensors/weather/rain_intensity"
+      then:
+        lambda: |
+          id(disp).set_component_text("rain_intensity", message);
+    - topic: "sensors/windows/any_open"
+      then:
+        lambda: |
+          id(disp).set_component_text("windows", message);
+    - topic: "climate/bedroom/temperature"
+      then:
+        lambda: |
+          id(disp).set_component_text("climate", message);
+    - topic: "climate/bedroom/on"
+      then:
+        lambda: |
+          id(disp).set_component_text("climate2", message);
+    - topic: "blinds/bedroom/position"
+      then:
+        lambda: |
+          id(disp).set_component_text("blinds", message);
+          // Set to open/ Close depending on position

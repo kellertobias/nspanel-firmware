@@ -1,0 +1,74 @@
+##### UART FOR NEXTION DISPLAY #####
+uart:
+  - id: tf_uart
+    tx_pin: 16
+    rx_pin: 17
+    baud_rate: 115200
+
+time:
+  - platform: homeassistant
+    id: time
+    on_time:
+      # every 5 seconds update hour and second on display
+      - seconds: /5
+        then:
+          - lambda: |-
+              id(disp).set_component_text("time_hour", id(time).strftime("%H"));
+              id(disp).set_component_text("time_min", id(time).strftime("%M"));
+      # every minute update date on display
+      - minutes: /1
+        then:
+          - lambda: |-
+              id(disp).set_component_text("date", id(time).strftime("%a, %d.%m.%Y"));
+
+sensor:
+  ###### Display Brightness GET VALUE FROM NSPanel SLIDER #####
+  # - id: heating_temp
+  #   name: Heating Temp
+  #   platform: nextion
+  #   variable_name: heating_temp
+  #   internal: true
+  #   on_value:
+  #     then:
+  #       value: !lambda return int(x);
+
+display:
+  - platform: nextion
+    id: disp
+    start_up_page: 0
+    auto_wake_on_touch: true
+    # tft_url: 'http://...'
+    touch_sleep_timeout: 30
+    # on_setup:
+    #   then:
+    #     - nextion.set_page: 0
+    #     - nextion.set_brightness: 50%
+    # on_sleep:
+    #   then:
+    #     - nextion.set_brightness: 0%
+    # on_wake:
+    #   then:
+    #     - nextion.set_brightness: 50%
+    on_page:
+      then:
+        lambda: |
+          switch(x) {
+            case 0x00:
+              // Page 0
+              break;
+            case 0x01:
+              // Page 1
+              break;
+            case 0x02:
+              // Page 2
+              break;
+            default:
+              break;
+          }
+    on_touch:
+      then:
+        lambda: |
+          if(component_id == "x") {
+            // Do something
+            // id(mqtt).publish("sensors/bedroom/light", "toggle");
+          }

@@ -1,0 +1,4 @@
+button:
+  - name: Restart
+    platform: restart
+    id: reboot
