@@ -1,4 +1,17 @@
 binary_sensor:
+  - platform: template
+    name: Hardware Left Button Short
+    id: hw_btn_left_short
+  - platform: template
+    name: Hardware Left Button Long
+    id: hw_btn_left_long
+  - platform: template
+    name: Hardware Right Button Short
+    id: hw_btn_right_short
+  - platform: template
+    name: Hardware Right Button Long
+    id: hw_btn_right_long
+
   - platform: gpio
     id: hw_btn_left
     pin:
@@ -6,18 +19,10 @@ binary_sensor:
       inverted: true
     filters:
       - delayed_on: 50ms
-    on_click:
-      - max_length: 1.8s
-        then:
-          - logger.log: "Left button - Short click"
-          - lambda: |
-              id(mqtt_client).publish("node/button/hw0", "short");
-      - min_length: 2s
-        max_length: 10s
-        then:
-          - logger.log: "Left button - Long click"
-          - lambda: |
-              id(mqtt_client).publish("node/button/hw0", "long");
+    on_click: !include
+      file: templates/touch_short_long.yaml
+      vars:
+        button_set: hw_btn_left
 
   - platform: gpio
     id: hw_btn_right
@@ -26,15 +31,7 @@ binary_sensor:
       inverted: true
     filters:
       - delayed_on: 50ms
-    on_click:
-      - max_length: 1.8s
-        then:
-          - logger.log: "Left button - Short click"
-          - lambda: |
-              id(mqtt_client).publish("node/button/hw0", "short");
-      - min_length: 2s
-        max_length: 10s
-        then:
-          - logger.log: "Left button - Long click"
-          - lambda: |
-              id(mqtt_client).publish("node/button/hw0", "long");
+    on_click: !include
+      file: templates/touch_short_long.yaml
+      vars:
+        button_set: hw_btn_right

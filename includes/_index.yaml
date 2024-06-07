@@ -20,14 +20,14 @@ packages:
   # Includes Wifi and Wifi Status Updates
   wifi: !include wifi.yaml
 
-  # Includes MQTT and Subscribing to Topics
-  mqtt: !include mqtt.yaml
-
   # Includes the Hardware Relays as Home Assistant Switches
   relays: !include relays.yaml
 
   # Includes the Hardware Buttons as Home Assistant that publish to MQTT
   buttons: !include buttons.yaml
+
+  # touch buttons
+  touch: !include touch.yaml
 
   # Includes the Display and Display Logic including touch switches that publish to MQTT
   display: !include display.yaml

@@ -13,13 +13,13 @@ time:
       - seconds: /5
         then:
           - lambda: |-
-              id(disp).set_component_text("time_hour", id(time_source).strftime("%H"));
-              id(disp).set_component_text("time_min", id(time_source).strftime("%M"));
+              id(disp).set_component_text("time_hour", id(time_source).now().strftime("%H").c_str());
+              id(disp).set_component_text("time_min", id(time_source).now().strftime("%M").c_str());
       # every minute update date on display
       - minutes: /1
         then:
           - lambda: |-
-              id(disp).set_component_text("date", id(time_source).strftime("%a, %d.%m.%Y"));
+              id(disp).set_component_text("date", id(time_source).now().strftime("%a, %d.%m.%Y").c_str());
 
 sensor:
   ###### Display Brightness GET VALUE FROM NSPanel SLIDER #####
@@ -65,10 +65,9 @@ display:
             default:
               break;
           }
-    on_touch:
-      then:
-        lambda: |
-          if(component_id == "x") {
-            // Do something
-            // id(mqtt_client).publish("sensors/bedroom/light", "toggle");
-          }
+    # on_touch:
+    #   then:
+    #     lambda: |
+    #       if(component_id == "x") {
+    #         // Do something
+    #       }

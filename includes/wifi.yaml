@@ -9,22 +9,21 @@ wifi:
   # on_disconnect:
   #   then:
   #     - script.execute: refresh_wifi_icon
-
-sensor:
-  - platform: wifi_signal
-    name: "WiFi Signal"
-    entity_category: "diagnostic"
-    update_interval: 10s
-    on_value:
-      then:
-        lambda: |
-          if (id(disp).has_nextion()) {
-            id(disp).set_component_text("wifi", id(wifi_connection).state);
-          }
-          if (id(wifi_connection).state < -70) {
-            id(disp).set_component_background_color("wifi", 0xFF0000);
-          } else if (id(wifi_connection).state < -60) {
-            id(disp).set_component_background_color("wifi", 0xFFA500);
-          } else {
-            id(disp).set_component_background_color("wifi", 0x00FF00);
-          }
+# sensor:
+#   - platform: wifi_signal
+#     name: "WiFi Signal"
+#     entity_category: "diagnostic"
+#     update_interval: 10s
+#     on_value:
+#       then:
+#         lambda: |
+#           if (id(disp).has_nextion()) {
+#             id(disp).set_component_text("wifi", id(wifi_connection).state);
+#           }
+#           if (id(wifi_connection).state < -70) {
+#             id(disp).set_component_background_color("wifi", 0xFF0000);
+#           } else if (id(wifi_connection).state < -60) {
+#             id(disp).set_component_background_color("wifi", 0xFFA500);
+#           } else {
+#             id(disp).set_component_background_color("wifi", 0x00FF00);
+#           }
