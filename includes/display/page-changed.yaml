@@ -1,0 +1,21 @@
+script:
+  - id: goto_page
+    mode: restart
+    parameters:
+      page: string
+    then:
+      - lambda: if (current_page->state != page) disp->goto_page(page.c_str());
+
+  - id: page_changed
+    mode: restart
+    then:
+      - lambda: |-
+          if (!id(is_uploading_tft)) {
+            // Report new page to logs
+            ESP_LOGD("script.page_changed", "New page: %s", current_page->state.c_str());
+            if (current_page->state.empty()) {
+              goto_page->execute("boot");
+              page_changed->stop();
+            }
+            // TODO: Add Actions that are executed on page render
+          }

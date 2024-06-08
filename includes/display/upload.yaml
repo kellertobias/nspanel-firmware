@@ -1,0 +1,27 @@
+globals:
+  - id: is_uploading_tft
+    type: bool
+    restore_value: false
+    initial_value: "false"
+
+api:
+  services:
+    - service: update_nextion
+      then:
+        - lambda: |
+            id(is_uploading_tft) = true;
+            id(disp)->upload_tft();
+            id(is_uploading_tft) = false;
+    ##### Service to send a command "printf" directly to the display #####
+    - service: send_command_printf
+      variables:
+        cmd: string
+      then:
+        - lambda: 'id(disp).send_command_printf("%s", cmd.c_str());'
+    ##### Service to send a command "text_printf" directly to the display #####
+    - service: send_command_text_printf
+      variables:
+        component: string
+        message: string
+      then:
+        - lambda: 'id(disp).set_component_text_printf(component.c_str(), "%s", message.c_str());'

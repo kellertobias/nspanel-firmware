@@ -1,0 +1,130 @@
+packages:
+  # Includes Wifi and Wifi Status Updates
+  pages: !include page.yaml
+  bootup: !include bootup.yaml
+  sensors: !include sensors.yaml
+  time: !include time.yaml
+  upload: !include upload.yaml
+  touch: !include touch.yaml
+
+##### UART FOR NEXTION DISPLAY #####
+uart:
+  - id: tf_uart
+    tx_pin: 16
+    rx_pin: 17
+    # baud_rate: 9600
+    baud_rate: 115200
+
+display:
+  - platform: nextion
+    id: disp
+    start_up_page: 0
+    exit_reparse_on_start: true
+    auto_wake_on_touch: true
+    uart_id: tf_uart
+    tft_url: "http://192.168.42.210:8123/local/home.tft"
+    touch_sleep_timeout: 30
+    on_setup:
+      then:
+        - lambda: id(disp).send_command_printf("lcd_dev fffb 0002 0000 0020"); # Magic command to avoid 32pixel touchscreen offset on NSPanel (https://github.com/UNUF/nxt-doc/blob/main/Protocols/Full%20Instruction%20Set.md#readme)
+    on_page:
+      then: !include page-change-on.yaml
+
+    on_touch:
+      then:
+        lambda: |-
+          ESP_LOGD("nextion.on_touch", "Nextion touch event detected!");
+          ESP_LOGD("nextion.on_touch", "Page Id: %i", page_id);
+          ESP_LOGD("nextion.on_touch", "Component Id: %i", component_id);
+          ESP_LOGD("nextion.on_touch", "Event type: %s", touch_event ? "Press" : "Release");
+
+text_sensor:
+  - id: display_touch_event
+    platform: nextion
+    nextion_id: disp
+    component_name: localevent
+    internal: true
+    on_value:
+      then:
+        - lambda: |
+            DynamicJsonDocument json(1024);
+            DeserializationError error = deserializeJson(json, x.c_str());
+            if (error) {
+                ESP_LOGE("text_sensor.display_touch_event", "Error parsing json: %s", x.c_str());
+                ESP_LOGE("text_sensor.display_touch_event", "Error: %s", error.c_str());
+            } else {
+              const std::string page = json["page"];
+              const std::string component = json["component"];
+              const std::string value = json["value"];
+              ESP_LOGD("text_sensor.display_touch_event", "Event: %s :: %s", page.c_str(), component.c_str());
+              if(component == "page") {
+                if (current_page->state != page) {
+                  current_page->publish_state(page);
+                }
+              } else {
+                // Page 1
+                if(component == "button11") {
+                  touch_btn_scene_1_1->publish_state(true);
+                } else if (component == "button12") {
+                  touch_btn_scene_1_2->publish_state(true);
+                } else if (component == "button13") {
+                  touch_btn_scene_1_3->publish_state(true);
+                } else if (component == "button14") {
+                  touch_btn_scene_1_4->publish_state(true);
+                } else if (component == "button15") {
+                  touch_btn_scene_1_5->publish_state(true);
+                } else if (component == "button16") {
+                  touch_btn_scene_1_6->publish_state(true);
+                } else if (component == "button17") {
+                  touch_btn_scene_1_7->publish_state(true);
+                } else if (component == "button18") {
+                  touch_btn_scene_1_8->publish_state(true);
+                } else
+                // Page 2
+                if (component == "button21") {
+                  touch_btn_scene_2_1->publish_state(true);
+                } else if (component == "button22") {
+                  touch_btn_scene_2_2->publish_state(true);
+                } else if (component == "button23") {
+                  touch_btn_scene_2_3->publish_state(true);
+                } else if (component == "button24") {
+                  touch_btn_scene_2_4->publish_state(true);
+                } else if (component == "button25") {
+                  touch_btn_scene_2_5->publish_state(true);
+                } else if (component == "button26") {
+                  touch_btn_scene_2_6->publish_state(true);
+                } else if (component == "button27") {
+                  touch_btn_scene_2_7->publish_state(true);
+                } else if (component == "button28") {
+                  touch_btn_scene_2_8->publish_state(true);
+                } else
+                // Page Climate
+                if (component == "buttonc1") {
+                  touch_btn_climate_1->publish_state(true);
+                } else if (component == "buttonc2") {
+                  touch_btn_climate_2->publish_state(true);
+                } else if (component == "buttonc3") {
+                  touch_btn_climate_3->publish_state(true);
+                } else if (component == "buttonc4") {
+                  touch_btn_climate_4->publish_state(true);
+                } else
+                // Page Misc
+                if (component == "buttonm1") {
+                  touch_btn_misc_1->publish_state(true);
+                } else if (component == "buttonm2") {
+                  touch_btn_misc_2->publish_state(true);
+                } else if (component == "buttonm3") {
+                  touch_btn_misc_3->publish_state(true);
+                } else if (component == "buttonm4") {
+                  touch_btn_misc_4->publish_state(true);
+                } else if (component == "buttonm5") {
+                  touch_btn_misc_5->publish_state(true);
+                } else if (component == "buttonm6") {
+                  touch_btn_misc_6->publish_state(true);
+                } else if (component == "buttonm7") {
+                  touch_btn_misc_7->publish_state(true);
+                } else if (component == "buttonm8") {
+                  touch_btn_misc_8->publish_state(true);
+                }
+              }
+            }

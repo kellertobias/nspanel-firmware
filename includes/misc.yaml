@@ -2,3 +2,15 @@ button:
   - name: Restart
     platform: restart
     id: reboot
+  ###### Power cycle Nextion Display ######
+  - name: Nextion display - Power cycle
+    id: screen_power_cycle
+    platform: template
+    internal: false
+    disabled_by_default: true
+    icon: mdi:power-cycle
+    entity_category: diagnostic
+    on_press:
+      - switch.turn_off: screen_power
+      - delay: 1s
+      - switch.turn_on: screen_power

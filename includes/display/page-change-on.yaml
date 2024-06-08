@@ -1,0 +1,8 @@
+- logger.log: "Page change detected"
+- lambda: |-
+    ESP_LOGD("nextion.on_page", "Nextion page change detected! %d", x);
+    if (!id(is_uploading_tft)) {
+      if (current_page->state != id(available_pages)[x]) {
+        current_page->publish_state(id(available_pages)[x]);
+      }
+    }

@@ -4,11 +4,11 @@ switch:
     id: relay_1
     pin:
       number: 22
-    restore_mode: RESTORE_DEFAULT_OFF
+    # restore_mode: RESTORE_DEFAULT_OFF
 
   - name: Relay 2
     platform: gpio
     id: relay_2
     pin:
       number: 19
-    restore_mode: RESTORE_DEFAULT_OFF
+    # restore_mode: RESTORE_DEFAULT_OFF

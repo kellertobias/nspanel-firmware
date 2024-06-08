@@ -1,10 +1,12 @@
 esphome:
-  name: livingroom
-  comment: Living room ESP32 controller
-  area: Living Room
+  name: nspanel_office
+  comment: NSPanel Office
 
 substitutions:
   devicename: "testdevice"
   button_left_text: "Night/ Day Mode"
+  wifi_ssid_var: !secret wifi_ssid
+  wifi_password_var: !secret wifi_password
+  ota_password: !secret wifi_password
 
 <<: !include includes/_index.yaml

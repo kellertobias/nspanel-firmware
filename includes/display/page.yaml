@@ -1,0 +1,33 @@
+packages:
+  # Includes Wifi and Wifi Status Updates
+  pages-change: !include page-changed.yaml
+
+globals:
+  - id: available_pages
+    type: std::array<const char*, 12>
+    initial_value: |
+      {
+        "home",
+        "scenes",
+        "scenes_2",
+        "climate",
+        "misc",
+        "info",
+        "screensaver"
+      }
+
+text_sensor:
+  - id: current_page
+    name: "Current Page"
+    platform: template
+    disabled_by_default: false
+    filters:
+      - lambda: |-
+          x = x.c_str();
+          x.shrink_to_fit();
+          return x;
+    # on_value:
+    #   lambda: |-
+    #     if (!id(is_uploading_tft)) {
+    #       page_changed->execute();
+    #     }

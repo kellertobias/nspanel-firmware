@@ -1,14 +1,14 @@
-wifi:
-  id: wifi_connection
-  power_save_mode: LIGHT
-  ssid: wifi_ssid
-  password: wifi_password
-  # on_connect:
-  #   then:
-  #     - script.execute: refresh_wifi_icon
-  # on_disconnect:
-  #   then:
-  #     - script.execute: refresh_wifi_icon
+# wifi:
+#   id: wifi_connection
+#   # power_save_mode: LIGHT
+#   ssid: ${wifi_ssid_var}
+#   password: ${wifi_password_var}
+# on_connect:
+#   then:
+#     - script.execute: refresh_wifi_icon
+# on_disconnect:
+#   then:
+#     - script.execute: refresh_wifi_icon
 # sensor:
 #   - platform: wifi_signal
 #     name: "WiFi Signal"
@@ -27,3 +27,16 @@ wifi:
 #           } else {
 #             id(disp).set_component_background_color("wifi", 0x00FF00);
 #           }
+
+##### WIFI SETUP #####
+wifi:
+  id: wifi_component
+  power_save_mode: LIGHT
+  ssid: ${wifi_ssid_var}
+  password: ${wifi_password_var}
+  # on_connect:
+  #   then:
+  #     - script.execute: refresh_wifi_icon
+  # on_disconnect:
+  #   then:
+  #     - script.execute: refresh_wifi_icon

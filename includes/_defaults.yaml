@@ -1,11 +1,11 @@
 substitutions:
-  tft_url: "http://"
+  tft_url: "http://192.168.42.210:8123/local/home.tft"
   long_click_time: 2s
 
+  ota_password: ${wifi_password_var}
+
   # Hardware Buttons
-  button_left_topic: "button/room/hw0"
   button_left_text: "Left Button"
-  button_right_topic: "button/room/hw1"
   button_right_text: "Right Button"
 
   # Display States

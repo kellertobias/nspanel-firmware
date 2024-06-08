@@ -1,0 +1,13 @@
+sensor:
+  ##### WIFI Signal stregth
+  - platform: wifi_signal
+    name: RSSI
+    update_interval: 30s
+    # on_value:
+    #   - if:
+    #       condition:
+    #         wifi.connected:
+    #       then:
+    #         - lambda: id(disp).set_component_text_printf("home.wifi_icon", "%s", "\U0000E5A8");
+    #       else:
+    #         - lambda: id(disp).set_component_text_printf("home.wifi_icon", "%s", "\U0000FFFF");

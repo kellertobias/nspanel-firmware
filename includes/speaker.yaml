@@ -9,3 +9,12 @@ output:
     platform: ledc
     pin:
       number: 21
+
+api:
+  services:
+    - service: play_rtttl
+      variables:
+        song_str: string
+      then:
+        - rtttl.play:
+            rtttl: !lambda "return song_str;"
