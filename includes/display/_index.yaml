@@ -108,7 +108,15 @@ text_sensor:
                   touch_btn_scene_2_8->publish_state(true);
                 } else
                 // Page Climate
-                if (component == "buttonc1") {
+                if (component == "slidehea") {
+                  heating_temp->publish_state(std::stof(value));
+                } else if(component == "slidecov") {
+                  blinds_position->publish_state(std::stof(value));
+                } else if (component == "buttonch") {
+                  // touch_btn_climate_1->publish_state(true);
+                } else if (component == "buttoncb") {
+                  // touch_btn_climate_1->publish_state(true);
+                } else if (component == "buttonc1") {
                   touch_btn_climate_1->publish_state(true);
                 } else if (component == "buttonc2") {
                   touch_btn_climate_2->publish_state(true);

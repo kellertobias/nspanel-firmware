@@ -3,21 +3,7 @@ time:
     id: time_source
     on_time:
       # every 5 seconds update hour and second on display
-      - seconds: /1
+      - seconds: /5
         then:
-          - lambda: |-
-              if(!id(is_uploading_tft)) {
-                id(disp).set_component_text("time_hour", id(time_source).now().strftime("%H").c_str());
-                id(disp).set_component_text("time_minute", id(time_source).now().strftime("%M").c_str());
-                id(disp).set_component_text("time_colon", ":");
-              }
-      # every minute update date on display
-      - minutes: /1
-        then:
-          - lambda: |-
-              if(!id(is_uploading_tft)) {
-                id(disp).set_component_text("time_hour", id(time_source).now().strftime("%H").c_str());
-                id(disp).set_component_text("time_minute", id(time_source).now().strftime("%M").c_str());
-                id(disp).set_component_text("time_date", id(time_source).now().strftime("%a, %d.%m.%Y").c_str());
-                id(disp).set_component_text("time_colon", ":");
-              }
+          - script.execute: render_home
+          - script.execute: render_screensaver

@@ -11,3 +11,132 @@ sensor:
     #         - lambda: id(disp).set_component_text_printf("home.wifi_icon", "%s", "\U0000E5A8");
     #       else:
     #         - lambda: id(disp).set_component_text_printf("home.wifi_icon", "%s", "\U0000FFFF");
+
+number:
+  - id: ext_heating_temp
+    name: "Shown Heating Temp"
+    platform: template
+    unit_of_measurement: "°C"
+    step: 1
+    max_value: 30
+    min_value: 12
+    optimistic: true
+    on_value:
+      then:
+        - script.execute: render_climate
+  - id: ext_blinds_position
+    name: "Shown Blinds Position"
+    platform: template
+    unit_of_measurement: "%"
+    step: 1
+    max_value: 100
+    min_value: 0
+    optimistic: true
+    on_value:
+      then:
+        - script.execute: render_climate
+
+switch:
+  - name: Shown Heating Power
+    id: ext_heating_power
+    platform: template
+    turn_on_action:
+      - script.execute: render_climate
+    turn_off_action:
+      - script.execute: render_climate
+
+  - name: Shown Climate Button 1 State
+    id: ext_clim1_state
+    platform: template
+    turn_on_action:
+      - script.execute: render_climate
+    turn_off_action:
+      - script.execute: render_climate
+
+  - name: Shown Climate Button 2 State
+    id: ext_clim2_state
+    platform: template
+    turn_on_action:
+      - script.execute: render_climate
+    turn_off_action:
+      - script.execute: render_climate
+
+  - name: Shown Climate Button 3 State
+    id: ext_clim3_state
+    platform: template
+    turn_on_action:
+      - script.execute: render_climate
+    turn_off_action:
+      - script.execute: render_climate
+
+  - name: Shown Climate Button 4 State
+    id: ext_clim4_state
+    platform: template
+    turn_on_action:
+      - script.execute: render_climate
+    turn_off_action:
+      - script.execute: render_climate
+
+  - name: Shown Misc Button 1 State
+    id: ext_misc1_state
+    platform: template
+    turn_on_action:
+      - script.execute: render_misc
+    turn_off_action:
+      - script.execute: render_misc
+
+  - name: Shown Misc Button 2 State
+    id: ext_misc2_state
+    platform: template
+    turn_on_action:
+      - script.execute: render_misc
+    turn_off_action:
+      - script.execute: render_misc
+
+  - name: Shown Misc Button 3 State
+    id: ext_misc3_state
+    platform: template
+    turn_on_action:
+      - script.execute: render_misc
+    turn_off_action:
+      - script.execute: render_misc
+
+  - name: Shown Misc Button 4 State
+    id: ext_misc4_state
+    platform: template
+    turn_on_action:
+      - script.execute: render_misc
+    turn_off_action:
+      - script.execute: render_misc
+
+  - name: Shown Misc Button 5 State
+    id: ext_misc5_state
+    platform: template
+    turn_on_action:
+      - script.execute: render_misc
+    turn_off_action:
+      - script.execute: render_misc
+
+  - name: Shown Misc Button 6 State
+    id: ext_misc6_state
+    platform: template
+    turn_on_action:
+      - script.execute: render_misc
+    turn_off_action:
+      - script.execute: render_misc
+
+  - name: Shown Misc Button 7 State
+    id: ext_misc7_state
+    platform: template
+    turn_on_action:
+      - script.execute: render_misc
+    turn_off_action:
+      - script.execute: render_misc
+
+  - name: Shown Misc Button 8 State
+    id: ext_misc8_state
+    platform: template
+    turn_on_action:
+      - script.execute: render_misc
+    turn_off_action:
+      - script.execute: render_misc

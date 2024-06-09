@@ -4,7 +4,7 @@ script:
     then:
       - if:
           condition:
-            lambda: 'return current_page->state != "climate";'
+            lambda: 'return current_page->state == "climate";'
           then:
             - lambda: |
                 // TODO Render Current Temperature, Slider and Heating state

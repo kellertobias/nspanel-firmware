@@ -9,14 +9,14 @@ if:
     - lambda: |
         id(disp).set_component_text("btn_${idx}_txt", "${btn_txt}");
         id(disp).set_component_text("btn_${idx}_ico", "${btn_ico}");
-        // id(disp).set_component_visibility("btn_${idx}", true);
-        // id(disp).set_component_visibility("btn_${idx}_bck", true);
-        // id(disp).set_component_visibility("btn_${idx}_txt", true);
-        // id(disp).set_component_visibility("btn_${idx}_ico", true);
+        id(disp).send_command("vis btn_${idx},1");
+        id(disp).send_command("vis btn_${idx}_bck,1");
+        id(disp).send_command("vis btn_${idx}_txt,1");
+        id(disp).send_command("vis btn_${idx}_ico,1");
   else:
     # hide button
     - lambda: |
-        // id(disp).set_component_visibility("btn_${idx}", false);
-        // id(disp).set_component_visibility("btn_${idx}_bck", false);
-        // id(disp).set_component_visibility("btn_${idx}_txt", false);
-        // id(disp).set_component_visibility("btn_${idx}_ico", false);
+        id(disp).send_command("vis btn_${idx},0");
+        id(disp).send_command("vis btn_${idx}_bck,0");
+        id(disp).send_command("vis btn_${idx}_txt,0");
+        id(disp).send_command("vis btn_${idx}_ico,0");

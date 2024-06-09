@@ -4,7 +4,7 @@ script:
     then:
       - if:
           condition:
-            lambda: 'return current_page->state != "info";'
+            lambda: 'return current_page->state == "info";'
           then:
             - lambda: |
                 id(disp).set_component_text("info_text", "${info_text}");

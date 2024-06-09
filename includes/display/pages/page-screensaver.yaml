@@ -4,7 +4,7 @@ script:
     then:
       - if:
           condition:
-            lambda: 'return current_page->state != "screensaver";'
+            lambda: 'return current_page->state == "screensaver";'
           then:
             - lambda: |
                 id(disp).set_component_text("time_hour", id(time_source).now().strftime("%H").c_str());

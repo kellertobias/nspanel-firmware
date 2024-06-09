@@ -4,7 +4,7 @@ script:
     then:
       - if:
           condition:
-            lambda: 'return current_page->state != "scenes_2";'
+            lambda: 'return current_page->state == "scenes_2";'
           then:
             - !include
               file: ../../templates/update-touch-button.yaml
