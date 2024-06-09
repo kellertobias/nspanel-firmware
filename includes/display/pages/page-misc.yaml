@@ -1,0 +1,73 @@
+script:
+  - id: render_misc
+    mode: restart
+    then:
+      - if:
+          condition:
+            lambda: 'return current_page->state != "misc";'
+          then:
+            - !include
+              file: ../../templates/update-touch-button.yaml
+              vars:
+                {
+                  idx: misc1,
+                  btn_txt: "${btn_misc1_txt}",
+                  btn_ico: "${btn_misc1_ico}",
+                }
+            - !include
+              file: ../../templates/update-touch-button.yaml
+              vars:
+                {
+                  idx: misc2,
+                  btn_txt: "${btn_misc2_txt}",
+                  btn_ico: "${btn_misc2_ico}",
+                }
+            - !include
+              file: ../../templates/update-touch-button.yaml
+              vars:
+                {
+                  idx: misc3,
+                  btn_txt: "${btn_misc3_txt}",
+                  btn_ico: "${btn_misc3_ico}",
+                }
+            - !include
+              file: ../../templates/update-touch-button.yaml
+              vars:
+                {
+                  idx: misc4,
+                  btn_txt: "${btn_misc4_txt}",
+                  btn_ico: "${btn_misc4_ico}",
+                }
+            - !include
+              file: ../../templates/update-touch-button.yaml
+              vars:
+                {
+                  idx: misc5,
+                  btn_txt: "${btn_misc5_txt}",
+                  btn_ico: "${btn_misc5_ico}",
+                }
+            - !include
+              file: ../../templates/update-touch-button.yaml
+              vars:
+                {
+                  idx: misc6,
+                  btn_txt: "${btn_misc6_txt}",
+                  btn_ico: "${btn_misc6_ico}",
+                }
+            - !include
+              file: ../../templates/update-touch-button.yaml
+              vars:
+                {
+                  idx: misc7,
+                  btn_txt: "${btn_misc7_txt}",
+                  btn_ico: "${btn_misc7_ico}",
+                }
+            - !include
+              file: ../../templates/update-touch-button.yaml
+              vars:
+                {
+                  idx: misc8,
+                  btn_txt: "${btn_misc8_txt}",
+                  btn_ico: "${btn_misc8_ico}",
+                }
+            - !include page-hw-buttons.yaml

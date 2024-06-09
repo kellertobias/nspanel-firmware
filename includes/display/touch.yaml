@@ -13,84 +13,224 @@ binary_sensor:
   - platform: template
     name: Touch Scene 1.1
     id: touch_btn_scene_1_1
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_scene_1_1).publish_state(false);
+        - script.execute: render_scenes1
   - platform: template
     name: Touch Scene 1.2
     id: touch_btn_scene_1_2
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_scene_1_2).publish_state(false);
+        - script.execute: render_scenes1
   - platform: template
     name: Touch Scene 1.3
     id: touch_btn_scene_1_3
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_scene_1_3).publish_state(false);
+        - script.execute: render_scenes1
   - platform: template
     name: Touch Scene 1.4
     id: touch_btn_scene_1_4
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_scene_1_4).publish_state(false);
+        - script.execute: render_scenes1
   - platform: template
     name: Touch Scene 1.5
     id: touch_btn_scene_1_5
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_scene_1_5).publish_state(false);
+        - script.execute: render_scenes1
   - platform: template
     name: Touch Scene 1.6
     id: touch_btn_scene_1_6
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_scene_1_6).publish_state(false);
+        - script.execute: render_scenes1
   - platform: template
     name: Touch Scene 1.7
     id: touch_btn_scene_1_7
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_scene_1_7).publish_state(false);
+        - script.execute: render_scenes1
   - platform: template
     name: Touch Scene 1.8
     id: touch_btn_scene_1_8
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_scene_1_8).publish_state(false);
+        - script.execute: render_scenes1
   - platform: template
     name: Touch Scene 2.1
     id: touch_btn_scene_2_1
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_scene_2_1).publish_state(false);
+        - script.execute: render_scenes2
   - platform: template
     name: Touch Scene 2.2
     id: touch_btn_scene_2_2
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_scene_2_2).publish_state(false);
+        - script.execute: render_scenes2
   - platform: template
     name: Touch Scene 2.3
     id: touch_btn_scene_2_3
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_scene_2_3).publish_state(false);
+        - script.execute: render_scenes2
   - platform: template
     name: Touch Scene 2.4
     id: touch_btn_scene_2_4
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_scene_2_4).publish_state(false);
+        - script.execute: render_scenes2
   - platform: template
     name: Touch Scene 2.5
     id: touch_btn_scene_2_5
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_scene_2_5).publish_state(false);
+        - script.execute: render_scenes2
   - platform: template
     name: Touch Scene 2.6
     id: touch_btn_scene_2_6
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_scene_2_6).publish_state(false);
+        - script.execute: render_scenes2
   - platform: template
     name: Touch Scene 2.7
     id: touch_btn_scene_2_7
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_scene_2_7).publish_state(false);
+        - script.execute: render_scenes2
   - platform: template
     name: Touch Scene 2.8
     id: touch_btn_scene_2_8
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_scene_2_8).publish_state(false);
+        - script.execute: render_scenes2
   - platform: template
     name: Touch Climate 1
     id: touch_btn_climate_1
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_climate_1).publish_state(false);
+        - script.execute: render_climate
   - platform: template
     name: Touch Climate 2
     id: touch_btn_climate_2
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_climate_2).publish_state(false);
+        - script.execute: render_climate
   - platform: template
     name: Touch Climate 3
     id: touch_btn_climate_3
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_climate_3).publish_state(false);
+        - script.execute: render_climate
   - platform: template
     name: Touch Climate 4
     id: touch_btn_climate_4
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_climate_4).publish_state(false);
+        - script.execute: render_climate
   - platform: template
     name: Touch Misc 1
     id: touch_btn_misc_1
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_misc_1).publish_state(false);
+        - script.execute: render_misc
   - platform: template
     name: Touch Misc 2
     id: touch_btn_misc_2
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_misc_2).publish_state(false);
+        - script.execute: render_misc
   - platform: template
     name: Touch Misc 3
     id: touch_btn_misc_3
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_misc_3).publish_state(false);
+        - script.execute: render_misc
   - platform: template
     name: Touch Misc 4
     id: touch_btn_misc_4
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_misc_4).publish_state(false);
+        - script.execute: render_misc
   - platform: template
     name: Touch Misc 5
     id: touch_btn_misc_5
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_misc_5).publish_state(false);
+        - script.execute: render_misc
   - platform: template
     name: Touch Misc 6
     id: touch_btn_misc_6
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_misc_6).publish_state(false);
+        - script.execute: render_misc
   - platform: template
     name: Touch Misc 7
     id: touch_btn_misc_7
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_misc_7).publish_state(false);
+        - script.execute: render_misc
   - platform: template
     name: Touch Misc 8
     id: touch_btn_misc_8
+    on_state:
+      then:
+        - delay: 0.5s
+        - lambda: id(touch_btn_misc_8).publish_state(false);
+        - script.execute: render_misc

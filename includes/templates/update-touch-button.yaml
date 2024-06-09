@@ -1,0 +1,22 @@
+if:
+  condition:
+    # name_btn_scn21 is not empty
+    lambda: |
+      auto btn_txt = "${btn_txt}";
+      return strlen(btn_txt) > 0;
+  then:
+    # set button text and show button
+    - lambda: |
+        id(disp).set_component_text("btn_${idx}_txt", "${btn_txt}");
+        id(disp).set_component_text("btn_${idx}_ico", "${btn_ico}");
+        // id(disp).set_component_visibility("btn_${idx}", true);
+        // id(disp).set_component_visibility("btn_${idx}_bck", true);
+        // id(disp).set_component_visibility("btn_${idx}_txt", true);
+        // id(disp).set_component_visibility("btn_${idx}_ico", true);
+  else:
+    # hide button
+    - lambda: |
+        // id(disp).set_component_visibility("btn_${idx}", false);
+        // id(disp).set_component_visibility("btn_${idx}_bck", false);
+        // id(disp).set_component_visibility("btn_${idx}_txt", false);
+        // id(disp).set_component_visibility("btn_${idx}_ico", false);

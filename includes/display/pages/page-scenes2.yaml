@@ -1,0 +1,73 @@
+script:
+  - id: render_scenes2
+    mode: restart
+    then:
+      - if:
+          condition:
+            lambda: 'return current_page->state != "scenes_2";'
+          then:
+            - !include
+              file: ../../templates/update-touch-button.yaml
+              vars:
+                {
+                  idx: scn21,
+                  btn_txt: "${btn_scn21_txt}",
+                  btn_ico: "${btn_scn21_ico}",
+                }
+            - !include
+              file: ../../templates/update-touch-button.yaml
+              vars:
+                {
+                  idx: scn22,
+                  btn_txt: "${btn_scn22_txt}",
+                  btn_ico: "${btn_scn22_ico}",
+                }
+            - !include
+              file: ../../templates/update-touch-button.yaml
+              vars:
+                {
+                  idx: scn23,
+                  btn_txt: "${btn_scn23_txt}",
+                  btn_ico: "${btn_scn23_ico}",
+                }
+            - !include
+              file: ../../templates/update-touch-button.yaml
+              vars:
+                {
+                  idx: scn24,
+                  btn_txt: "${btn_scn24_txt}",
+                  btn_ico: "${btn_scn24_ico}",
+                }
+            - !include
+              file: ../../templates/update-touch-button.yaml
+              vars:
+                {
+                  idx: scn25,
+                  btn_txt: "${btn_scn25_txt}",
+                  btn_ico: "${btn_scn25_ico}",
+                }
+            - !include
+              file: ../../templates/update-touch-button.yaml
+              vars:
+                {
+                  idx: scn26,
+                  btn_txt: "${btn_scn26_txt}",
+                  btn_ico: "${btn_scn26_ico}",
+                }
+            - !include
+              file: ../../templates/update-touch-button.yaml
+              vars:
+                {
+                  idx: scn27,
+                  btn_txt: "${btn_scn27_txt}",
+                  btn_ico: "${btn_scn27_ico}",
+                }
+            - !include
+              file: ../../templates/update-touch-button.yaml
+              vars:
+                {
+                  idx: scn28,
+                  btn_txt: "${btn_scn28_txt}",
+                  btn_ico: "${btn_scn28_ico}",
+                }
+            - !include page-hw-buttons.yaml

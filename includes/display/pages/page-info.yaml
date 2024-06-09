@@ -1,0 +1,13 @@
+script:
+  - id: render_info
+    mode: restart
+    then:
+      - if:
+          condition:
+            lambda: 'return current_page->state != "info";'
+          then:
+            - lambda: |
+                id(disp).set_component_text("info_text", "${info_text}");
+                id(disp).set_component_text("info_qr", "${info_qr}");
+
+                //Todo: Add Device IP

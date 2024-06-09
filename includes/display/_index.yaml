@@ -7,6 +7,15 @@ packages:
   upload: !include upload.yaml
   touch: !include touch.yaml
 
+  # page renderers
+  page_home: !include pages/page-home.yaml
+  page_scenes1: !include pages/page-scenes1.yaml
+  page_scenes2: !include pages/page-scenes2.yaml
+  page_climate: !include pages/page-climate.yaml
+  page_misc: !include pages/page-misc.yaml
+  page_info: !include pages/page-info.yaml
+  page_screensaver: !include pages/page-screensaver.yaml
+
 ##### UART FOR NEXTION DISPLAY #####
 uart:
   - id: tf_uart

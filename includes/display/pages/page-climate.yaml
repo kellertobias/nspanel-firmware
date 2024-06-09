@@ -1,0 +1,44 @@
+script:
+  - id: render_climate
+    mode: restart
+    then:
+      - if:
+          condition:
+            lambda: 'return current_page->state != "climate";'
+          then:
+            - lambda: |
+                // TODO Render Current Temperature, Slider and Heating state
+                // TODO Render Current Blinds Position, State and Toggle Button
+            - !include
+              file: ../../templates/update-touch-button.yaml
+              vars:
+                {
+                  idx: clim1,
+                  btn_txt: "${btn_clim1_txt}",
+                  btn_ico: "${btn_clim1_ico}",
+                }
+            - !include
+              file: ../../templates/update-touch-button.yaml
+              vars:
+                {
+                  idx: clim2,
+                  btn_txt: "${btn_clim2_txt}",
+                  btn_ico: "${btn_clim2_ico}",
+                }
+            - !include
+              file: ../../templates/update-touch-button.yaml
+              vars:
+                {
+                  idx: clim3,
+                  btn_txt: "${btn_clim3_txt}",
+                  btn_ico: "${btn_clim3_ico}",
+                }
+            - !include
+              file: ../../templates/update-touch-button.yaml
+              vars:
+                {
+                  idx: clim4,
+                  btn_txt: "${btn_clim4_txt}",
+                  btn_ico: "${btn_clim4_ico}",
+                }
+            - !include page-hw-buttons.yaml

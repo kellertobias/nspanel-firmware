@@ -11,7 +11,6 @@ api:
         - lambda: |
             id(is_uploading_tft) = true;
             id(disp)->upload_tft();
-            id(is_uploading_tft) = false;
     ##### Service to send a command "printf" directly to the display #####
     - service: send_command_printf
       variables:

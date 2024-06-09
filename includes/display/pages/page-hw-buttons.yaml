@@ -1,0 +1,3 @@
+lambda: |
+  id(disp).set_component_text("hwbtn_left", "${hwbtn_left}");
+  id(disp).set_component_text("hwbtn_right", "${hwbtn_right}");

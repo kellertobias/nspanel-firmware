@@ -3,10 +3,76 @@ esphome:
   comment: NSPanel Office
 
 substitutions:
-  devicename: "testdevice"
-  button_left_text: "Night/ Day Mode"
   wifi_ssid_var: !secret wifi_ssid
   wifi_password_var: !secret wifi_password
   ota_password: !secret wifi_password
+
+  # hardware buttons
+  hwbtn_left: "Night/ Day Mode"
+  hwbtn_right: "Room Light"
+
+  # Scene Buttons & Icons
+  btn_scn11_txt: "Scene 1"
+  btn_scn11_ico: "1"
+  btn_scn12_txt: "Scene 2"
+  btn_scn12_ico: "1"
+  btn_scn13_txt: "Scene 3"
+  btn_scn13_ico: "1"
+  btn_scn14_txt: "Scene 4"
+  btn_scn14_ico: "1"
+  btn_scn15_txt: "Scene 5"
+  btn_scn15_ico: "1"
+  btn_scn16_txt: "Scene 6"
+  btn_scn16_ico: "1"
+  btn_scn17_txt: "Scene 7"
+  btn_scn17_ico: "1"
+  btn_scn18_txt: "Scene 8"
+  btn_scn18_ico: "1"
+
+  btn_scn21_txt: "Scene 9"
+  btn_scn21_ico: "1"
+  btn_scn22_txt: "Scene 10"
+  btn_scn22_ico: "1"
+  btn_scn23_txt: "Scene 11"
+  btn_scn23_ico: "1"
+  btn_scn24_txt: "Scene 12"
+  btn_scn24_ico: "1"
+  btn_scn25_txt: "Scene 13"
+  btn_scn25_ico: "1"
+  btn_scn26_txt: "Scene 14"
+  btn_scn26_ico: "1"
+  btn_scn27_txt: "Scene 15"
+  btn_scn27_ico: "1"
+  btn_scn28_txt: "Scene 16"
+  btn_scn28_ico: "1"
+
+  btn_misc1_txt: "Misc 1"
+  btn_misc1_ico: "1"
+  btn_misc2_txt: "Misc 2"
+  btn_misc2_ico: "1"
+  btn_misc3_txt: "Misc 3"
+  btn_misc3_ico: "1"
+  btn_misc4_txt: "Misc 4"
+  btn_misc4_ico: "1"
+  btn_misc5_txt: "Misc 5"
+  btn_misc5_ico: "1"
+  btn_misc6_txt: "Misc 6"
+  btn_misc6_ico: "1"
+  btn_misc7_txt: "Misc 7"
+  btn_misc7_ico: "1"
+  btn_misc8_txt: "Misc 8"
+  btn_misc8_ico: "1"
+
+  btn_clim1_txt: "Climate 1"
+  btn_clim1_ico: "1"
+  btn_clim2_txt: "Climate 2"
+  btn_clim2_ico: "1"
+  btn_clim3_txt: "Climate 3"
+  btn_clim3_ico: "1"
+  btn_clim4_txt: "Climate 4"
+  btn_clim4_ico: "1"
+
+  info_text: "Guest Wifi\\nSSID: GuestWifi\\nPassword: 12345678"
+  info_qr: "ABC12345678"
 
 <<: !include includes/_index.yaml
