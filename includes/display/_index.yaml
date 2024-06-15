@@ -24,6 +24,65 @@ uart:
     # baud_rate: 9600
     baud_rate: 115200
 
+script:
+  - id: touch_timer
+    mode: restart
+    then:
+      - delay: !lambda "return id(display_timeout)->state * 1000;"
+      - lambda: |
+          float brightness = id(display_brightness)->state;
+          if (!id(is_uploading_tft)) {
+            id(disp).set_backlight_brightness(brightness/2);
+          }
+      - delay: 2s
+      - lambda: |
+          if (!id(is_uploading_tft) ) {
+            if (current_page->state != "screensaver") {
+              id(disp).send_command_printf("page screensaver");
+            } else {
+              id(disp).set_backlight_brightness(id(display_sleep_brightness)->state);
+            }
+          }
+      - delay: 1s
+      - lambda: |
+          if (!id(is_uploading_tft)) {
+            id(disp).set_backlight_brightness(id(display_sleep_brightness)->state);
+          }
+
+number:
+  - id: display_brightness
+    platform: template
+    name: Display Brightness
+    optimistic: true
+    initial_value: 1
+    min_value: 0
+    max_value: 1
+    step: 0.05
+    restore_value: true
+    on_value:
+      then:
+        - lambda: |-
+            id(disp).set_backlight_brightness(x);
+  - id: display_sleep_brightness
+    platform: template
+    name: Display Sleep Brightness
+    optimistic: true
+    initial_value: 0.01
+    min_value: 0
+    max_value: 1
+    step: 0.01
+    restore_value: true
+
+  - id: display_timeout
+    platform: template
+    name: Display Timeout
+    optimistic: true
+    initial_value: 10
+    min_value: 5
+    max_value: 90
+    step: 1
+    restore_value: true
+
 display:
   - platform: nextion
     id: disp
@@ -38,6 +97,7 @@ display:
         - lambda: |
             id(disp).send_command_printf("lcd_dev fffb 0002 0000 0020"); // Magic command to avoid 32pixel touchscreen offset on NSPanel (https://github.com/UNUF/nxt-doc/blob/main/Protocols/Full%20Instruction%20Set.md#readme)
             id(disp).send_command_printf("page home");
+            id(touch_timer)->execute();
     on_page:
       then: !include page-change-on.yaml
 
@@ -60,6 +120,7 @@ text_sensor:
         - lambda: |
             DynamicJsonDocument json(1024);
             DeserializationError error = deserializeJson(json, x.c_str());
+            float brightness = id(display_brightness)->state;
             if (error) {
                 ESP_LOGE("text_sensor.display_touch_event", "Error parsing json: %s", x.c_str());
                 ESP_LOGE("text_sensor.display_touch_event", "Error: %s", error.c_str());
@@ -74,8 +135,12 @@ text_sensor:
                     disp->goto_page("home");
                   }
                   current_page->publish_state(page);
+                  id(disp).set_backlight_brightness(brightness);
+                  id(touch_timer)->execute();
                 }
               } else {
+                id(disp).set_backlight_brightness(brightness);
+                id(touch_timer)->execute();
 
                 // Page 1
                 if(component == "button11") {

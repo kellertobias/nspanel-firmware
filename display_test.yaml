@@ -5,7 +5,7 @@ esphome:
 substitutions:
   wifi_ssid_var: !secret wifi_ssid
   wifi_password_var: !secret wifi_password
-  ota_password: !secret wifi_password
+  ota_password: DataNirvana2015!
 
   # sensors
   sensor_entity_windows: binary_sensor.windows
@@ -29,9 +29,9 @@ substitutions:
   hwbtn_left_long_srv: "switch.toggle"
 
   hwbtn_right_short_ent: "script.good_morning"
-  hwbtn_right_short_srv: "script.good_morning"
+  hwbtn_right_short_srv: "script.turn_on"
   hwbtn_right_long_ent: "script.good_morning"
-  hwbtn_right_long_srv: "script.good_morning"
+  hwbtn_right_long_srv: "script.turn_on"
 
   # Scene Buttons & Icons
   btn_scn11_txt: "All Off"

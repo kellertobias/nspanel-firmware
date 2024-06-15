@@ -98,4 +98,4 @@ packages:
   sensors: !include sensors.yaml
 
   # # Includes miscalaneous, e.g. reboot
-  # misc: !include misc.yaml
+  misc: !include misc.yaml

@@ -1,2 +1,6 @@
 secrets.yaml
 .esphome
+include
+bin
+lib
+.DS_Store
