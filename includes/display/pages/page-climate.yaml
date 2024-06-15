@@ -10,7 +10,7 @@ script:
                 // TODO Render Current Temperature, Slider and Heating state
                 // TODO Render Current Blinds Position, State and Toggle Button
             - !include
-              file: ../../templates/update-touch-button.yaml
+              file: ../../templates/update-touch-toggle.yaml
               vars:
                 {
                   idx: clim1,
@@ -18,7 +18,7 @@ script:
                   btn_ico: "${btn_clim1_ico}",
                 }
             - !include
-              file: ../../templates/update-touch-button.yaml
+              file: ../../templates/update-touch-toggle.yaml
               vars:
                 {
                   idx: clim2,
@@ -26,7 +26,7 @@ script:
                   btn_ico: "${btn_clim2_ico}",
                 }
             - !include
-              file: ../../templates/update-touch-button.yaml
+              file: ../../templates/update-touch-toggle.yaml
               vars:
                 {
                   idx: clim3,
@@ -34,7 +34,7 @@ script:
                   btn_ico: "${btn_clim3_ico}",
                 }
             - !include
-              file: ../../templates/update-touch-button.yaml
+              file: ../../templates/update-touch-toggle.yaml
               vars:
                 {
                   idx: clim4,
@@ -42,3 +42,4 @@ script:
                   btn_ico: "${btn_clim4_ico}",
                 }
             - !include page-hw-buttons.yaml
+            - !include parts/render-climate.yaml

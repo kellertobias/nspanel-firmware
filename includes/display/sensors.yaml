@@ -3,140 +3,138 @@ sensor:
   - platform: wifi_signal
     name: RSSI
     update_interval: 30s
-    # on_value:
-    #   - if:
-    #       condition:
-    #         wifi.connected:
-    #       then:
-    #         - lambda: id(disp).set_component_text_printf("home.wifi_icon", "%s", "\U0000E5A8");
-    #       else:
-    #         - lambda: id(disp).set_component_text_printf("home.wifi_icon", "%s", "\U0000FFFF");
+    on_value:
+      then:
+        - !include pages/parts/render-wifi.yaml
 
-number:
-  - id: ext_heating_temp
-    name: "Shown Heating Temp"
-    platform: template
-    unit_of_measurement: "°C"
-    step: 1
-    max_value: 30
-    min_value: 12
-    optimistic: true
+text_sensor:
+  - platform: homeassistant
+    id: window_state
+    entity_id: ${sensor_entity_windows}
+    on_value:
+      then:
+        - !include pages/parts/render-windows.yaml
+  - platform: homeassistant
+    id: room_temp
+    entity_id: ${sensor_entity_room_temp}
+    on_value:
+      then:
+        - !include pages/parts/render-weather.yaml
+  - platform: homeassistant
+    id: room_humidity
+    entity_id: ${sensor_entity_room_humidity}
+    on_value:
+      then:
+        - !include pages/parts/render-weather.yaml
+  - platform: homeassistant
+    id: weather_temp
+    entity_id: ${sensor_entity_weather_temp}
+    attribute: temperature
+    on_value:
+      then:
+        - !include pages/parts/render-weather.yaml
+  - platform: homeassistant
+    id: weather_rain
+    entity_id: ${sensor_entity_weather_rain}
+    on_value:
+      then:
+        - !include pages/parts/render-weather.yaml
+  - platform: homeassistant
+    id: weather_state
+    entity_id: ${sensor_entity_weather_state}
+    on_value:
+      then:
+        - !include pages/parts/render-weather.yaml
+  - platform: homeassistant
+    id: heat_temp
+    entity_id: ${sensor_entity_heating_temp}
+    attribute: temperature
+    on_value:
+      then:
+        - !include pages/parts/render-climate.yaml
+  - platform: homeassistant
+    id: heat_power
+    entity_id: ${sensor_entity_heating_enable}
+    on_value:
+      then:
+        - !include pages/parts/render-climate.yaml
+  - platform: homeassistant
+    id: blinds_pos
+    entity_id: ${sensor_entity_blinds_position}
+    attribute: current_position
+    on_value:
+      then:
+        - !include pages/parts/render-climate.yaml
+
+  # sensors for misc 1-8 and climate 1-4
+  - platform: homeassistant
+    id: sensor_misc1
+    entity_id: ${btn_misc1_ent}
+    on_value:
+      then:
+        - script.execute: render_misc
+  - platform: homeassistant
+    id: sensor_misc2
+    entity_id: ${btn_misc2_ent}
+    on_value:
+      then:
+        - script.execute: render_misc
+  - platform: homeassistant
+    id: sensor_misc3
+    entity_id: ${btn_misc3_ent}
+    on_value:
+      - script.execute: render_misc
+  - platform: homeassistant
+    id: sensor_misc4
+    entity_id: ${btn_misc4_ent}
+    on_value:
+      then:
+        - script.execute: render_misc
+  - platform: homeassistant
+    id: sensor_misc5
+    entity_id: ${btn_misc5_ent}
+    on_value:
+      then:
+        - script.execute: render_misc
+  - platform: homeassistant
+    id: sensor_misc6
+    entity_id: ${btn_misc6_ent}
+    on_value:
+      then:
+        - script.execute: render_misc
+  - platform: homeassistant
+    id: sensor_misc7
+    entity_id: ${btn_misc7_ent}
+    on_value:
+      then:
+        - script.execute: render_misc
+  - platform: homeassistant
+    id: sensor_misc8
+    entity_id: ${btn_misc8_ent}
+    on_value:
+      then:
+        - script.execute: render_misc
+  - platform: homeassistant
+    id: sensor_clim1
+    entity_id: ${btn_clim1_ent}
     on_value:
       then:
         - script.execute: render_climate
-  - id: ext_blinds_position
-    name: "Shown Blinds Position"
-    platform: template
-    unit_of_measurement: "%"
-    step: 1
-    max_value: 100
-    min_value: 0
-    optimistic: true
+  - platform: homeassistant
+    id: sensor_clim2
+    entity_id: ${btn_clim2_ent}
     on_value:
       then:
         - script.execute: render_climate
-
-switch:
-  - name: Shown Heating Power
-    id: ext_heating_power
-    platform: template
-    turn_on_action:
-      - script.execute: render_climate
-    turn_off_action:
-      - script.execute: render_climate
-
-  - name: Shown Climate Button 1 State
-    id: ext_clim1_state
-    platform: template
-    turn_on_action:
-      - script.execute: render_climate
-    turn_off_action:
-      - script.execute: render_climate
-
-  - name: Shown Climate Button 2 State
-    id: ext_clim2_state
-    platform: template
-    turn_on_action:
-      - script.execute: render_climate
-    turn_off_action:
-      - script.execute: render_climate
-
-  - name: Shown Climate Button 3 State
-    id: ext_clim3_state
-    platform: template
-    turn_on_action:
-      - script.execute: render_climate
-    turn_off_action:
-      - script.execute: render_climate
-
-  - name: Shown Climate Button 4 State
-    id: ext_clim4_state
-    platform: template
-    turn_on_action:
-      - script.execute: render_climate
-    turn_off_action:
-      - script.execute: render_climate
-
-  - name: Shown Misc Button 1 State
-    id: ext_misc1_state
-    platform: template
-    turn_on_action:
-      - script.execute: render_misc
-    turn_off_action:
-      - script.execute: render_misc
-
-  - name: Shown Misc Button 2 State
-    id: ext_misc2_state
-    platform: template
-    turn_on_action:
-      - script.execute: render_misc
-    turn_off_action:
-      - script.execute: render_misc
-
-  - name: Shown Misc Button 3 State
-    id: ext_misc3_state
-    platform: template
-    turn_on_action:
-      - script.execute: render_misc
-    turn_off_action:
-      - script.execute: render_misc
-
-  - name: Shown Misc Button 4 State
-    id: ext_misc4_state
-    platform: template
-    turn_on_action:
-      - script.execute: render_misc
-    turn_off_action:
-      - script.execute: render_misc
-
-  - name: Shown Misc Button 5 State
-    id: ext_misc5_state
-    platform: template
-    turn_on_action:
-      - script.execute: render_misc
-    turn_off_action:
-      - script.execute: render_misc
-
-  - name: Shown Misc Button 6 State
-    id: ext_misc6_state
-    platform: template
-    turn_on_action:
-      - script.execute: render_misc
-    turn_off_action:
-      - script.execute: render_misc
-
-  - name: Shown Misc Button 7 State
-    id: ext_misc7_state
-    platform: template
-    turn_on_action:
-      - script.execute: render_misc
-    turn_off_action:
-      - script.execute: render_misc
-
-  - name: Shown Misc Button 8 State
-    id: ext_misc8_state
-    platform: template
-    turn_on_action:
-      - script.execute: render_misc
-    turn_off_action:
-      - script.execute: render_misc
+  - platform: homeassistant
+    id: sensor_clim3
+    entity_id: ${btn_clim3_ent}
+    on_value:
+      then:
+        - script.execute: render_climate
+  - platform: homeassistant
+    id: sensor_clim4
+    entity_id: ${btn_clim4_ent}
+    on_value:
+      then:
+        - script.execute: render_climate

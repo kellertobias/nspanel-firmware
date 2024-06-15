@@ -1,0 +1,12 @@
+if:
+  condition:
+    lambda: 'return current_page->state == "home";'
+  then:
+    - lambda: |
+        id(disp).set_component_text("room_temp", id(room_temp).state.c_str());
+        id(disp).set_component_text("room_humid",  id(room_humidity).state.c_str());
+        id(disp).set_component_text("weather_temp", id(weather_temp).state.c_str());
+        id(disp).set_component_text("weather_rain", "");
+        id(disp).set_component_text("weather_precip", "");
+
+        // TODO: Render Weather Icon

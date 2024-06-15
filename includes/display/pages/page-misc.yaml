@@ -7,7 +7,7 @@ script:
             lambda: 'return current_page->state == "misc";'
           then:
             - !include
-              file: ../../templates/update-touch-button.yaml
+              file: ../../templates/update-touch-toggle.yaml
               vars:
                 {
                   idx: misc1,
@@ -15,7 +15,7 @@ script:
                   btn_ico: "${btn_misc1_ico}",
                 }
             - !include
-              file: ../../templates/update-touch-button.yaml
+              file: ../../templates/update-touch-toggle.yaml
               vars:
                 {
                   idx: misc2,
@@ -23,7 +23,7 @@ script:
                   btn_ico: "${btn_misc2_ico}",
                 }
             - !include
-              file: ../../templates/update-touch-button.yaml
+              file: ../../templates/update-touch-toggle.yaml
               vars:
                 {
                   idx: misc3,
@@ -31,7 +31,7 @@ script:
                   btn_ico: "${btn_misc3_ico}",
                 }
             - !include
-              file: ../../templates/update-touch-button.yaml
+              file: ../../templates/update-touch-toggle.yaml
               vars:
                 {
                   idx: misc4,
@@ -39,7 +39,7 @@ script:
                   btn_ico: "${btn_misc4_ico}",
                 }
             - !include
-              file: ../../templates/update-touch-button.yaml
+              file: ../../templates/update-touch-toggle.yaml
               vars:
                 {
                   idx: misc5,
@@ -47,7 +47,7 @@ script:
                   btn_ico: "${btn_misc5_ico}",
                 }
             - !include
-              file: ../../templates/update-touch-button.yaml
+              file: ../../templates/update-touch-toggle.yaml
               vars:
                 {
                   idx: misc6,
@@ -55,7 +55,7 @@ script:
                   btn_ico: "${btn_misc6_ico}",
                 }
             - !include
-              file: ../../templates/update-touch-button.yaml
+              file: ../../templates/update-touch-toggle.yaml
               vars:
                 {
                   idx: misc7,
@@ -63,7 +63,7 @@ script:
                   btn_ico: "${btn_misc7_ico}",
                 }
             - !include
-              file: ../../templates/update-touch-button.yaml
+              file: ../../templates/update-touch-toggle.yaml
               vars:
                 {
                   idx: misc8,

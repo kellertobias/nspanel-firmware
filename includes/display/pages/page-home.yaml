@@ -15,3 +15,6 @@ script:
                 // TODO: Render Window Symbol
                 // TODO: Render Temperature & Weather
             - !include page-hw-buttons.yaml
+            - !include parts/render-wifi.yaml
+            - !include parts/render-windows.yaml
+            - !include parts/render-weather.yaml

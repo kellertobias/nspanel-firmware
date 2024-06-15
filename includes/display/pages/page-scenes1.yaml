@@ -71,3 +71,20 @@ script:
                   btn_ico: "${btn_scn18_ico}",
                 }
             - !include page-hw-buttons.yaml
+            - if:
+                condition:
+                  # name_btn_scn21 is not empty
+                  lambda: 'return strlen("${btn_scn21_txt}") > 0;'
+                then:
+                  - lambda: |
+                      ESP_LOGD("nextion.render", "Having second page!");
+                      id(disp).send_command("vis btn_more_bck,1");
+                      id(disp).send_command("vis btn_more_ico,1");
+                      id(disp).send_command("vis btn_more_txt,1");
+                else:
+                  - lambda: |
+                      ESP_LOGD("nextion.render", "Having NO second page!");
+
+                      id(disp).send_command("vis btn_more_bck,0");
+                      id(disp).send_command("vis btn_more_ico,0");
+                      id(disp).send_command("vis btn_more_txt,0");

@@ -7,72 +7,174 @@ substitutions:
   wifi_password_var: !secret wifi_password
   ota_password: !secret wifi_password
 
+  # sensors
+  sensor_entity_windows: binary_sensor.windows
+  sensor_entity_room_temp: sensor.climate_livingroom_temperature
+  sensor_entity_room_humidity: sensor.climate_livingroom_humidity
+  sensor_entity_weather_temp: weather.forecast_home # use attribute temperature
+  sensor_entity_weather_rain: "empty.empty"
+  sensor_entity_weather_state: weather.forecast_home # use state
+
+  sensor_entity_heating_temp: climate.heizung_buro # use attribute temperature
+  sensor_entity_heating_enable: climate.heizung_buro
+  sensor_entity_blinds_position: cover.blinds_office_cover
+
   # hardware buttons
   hwbtn_left: "Night/ Day Mode"
   hwbtn_right: "Room Light"
 
+  hwbtn_left_short_ent: "scene.buro_arbeiten_nacht"
+  hwbtn_left_short_srv: "scene.turn_on"
+  hwbtn_left_long_ent: "scene.buro_arbeiten_tag"
+  hwbtn_left_long_srv: "scene.turn_on"
+
+  hwbtn_right_short_ent: "scene.buro_arbeiten_nacht"
+  hwbtn_right_short_srv: "scene.turn_on"
+  hwbtn_right_long_ent: "scene.buro_arbeiten_tag"
+  hwbtn_right_long_srv: "scene.turn_on"
+
   # Scene Buttons & Icons
-  btn_scn11_txt: "Scene 1"
-  btn_scn11_ico: "1"
-  btn_scn12_txt: "Scene 2"
-  btn_scn12_ico: "1"
-  btn_scn13_txt: "Scene 3"
-  btn_scn13_ico: "1"
-  btn_scn14_txt: "Scene 4"
-  btn_scn14_ico: "1"
-  btn_scn15_txt: "Scene 5"
-  btn_scn15_ico: "1"
-  btn_scn16_txt: "Scene 6"
-  btn_scn16_ico: "1"
-  btn_scn17_txt: "Scene 7"
-  btn_scn17_ico: "1"
-  btn_scn18_txt: "Scene 8"
-  btn_scn18_ico: "1"
+  btn_scn11_txt: "All Off"
+  btn_scn11_ico: "l"
+  btn_scn11_ent: "scene.alles_aus_2"
+  btn_scn11_srv: "scene.turn_on"
 
-  btn_scn21_txt: "Scene 9"
-  btn_scn21_ico: "1"
-  btn_scn22_txt: "Scene 10"
-  btn_scn22_ico: "1"
-  btn_scn23_txt: "Scene 11"
-  btn_scn23_ico: "1"
-  btn_scn24_txt: "Scene 12"
-  btn_scn24_ico: "1"
-  btn_scn25_txt: "Scene 13"
-  btn_scn25_ico: "1"
-  btn_scn26_txt: "Scene 14"
-  btn_scn26_ico: "1"
-  btn_scn27_txt: "Scene 15"
-  btn_scn27_ico: "1"
-  btn_scn28_txt: "Scene 16"
-  btn_scn28_ico: "1"
+  btn_scn12_txt: "Gaming"
+  btn_scn12_ico: "s"
+  btn_scn12_ent: "scene.buro_gaming"
+  btn_scn12_srv: "scene.turn_on"
 
-  btn_misc1_txt: "Misc 1"
-  btn_misc1_ico: "1"
-  btn_misc2_txt: "Misc 2"
-  btn_misc2_ico: "1"
-  btn_misc3_txt: "Misc 3"
-  btn_misc3_ico: "1"
-  btn_misc4_txt: "Misc 4"
-  btn_misc4_ico: "1"
-  btn_misc5_txt: "Misc 5"
-  btn_misc5_ico: "1"
-  btn_misc6_txt: "Misc 6"
-  btn_misc6_ico: "1"
-  btn_misc7_txt: "Misc 7"
-  btn_misc7_ico: "1"
-  btn_misc8_txt: "Misc 8"
-  btn_misc8_ico: "1"
+  btn_scn13_txt: "Conference"
+  btn_scn13_ico: "U"
+  btn_scn13_ent: "scene.buro_konferenz"
+  btn_scn13_srv: "scene.turn_on"
 
-  btn_clim1_txt: "Climate 1"
-  btn_clim1_ico: "1"
-  btn_clim2_txt: "Climate 2"
-  btn_clim2_ico: "1"
-  btn_clim3_txt: "Climate 3"
-  btn_clim3_ico: "1"
-  btn_clim4_txt: "Climate 4"
-  btn_clim4_ico: "1"
+  btn_scn14_txt: "Evening"
+  btn_scn14_ico: "O"
+  btn_scn14_ent: "scene.buro_arbeiten_nacht"
+  btn_scn14_srv: "scene.turn_on"
 
-  info_text: "Guest Wifi\\nSSID: GuestWifi\\nPassword: 12345678"
+  btn_scn15_txt: "Working"
+  btn_scn15_ico: "N"
+  btn_scn15_ent: "scene.buro_cleaning"
+  btn_scn15_srv: "scene.turn_on"
+
+  btn_scn16_txt: ""
+  btn_scn16_ico: ""
+  btn_scn16_ent: "empty.empty"
+  btn_scn16_srv: "scene.turn_on"
+
+  btn_scn17_txt: ""
+  btn_scn17_ico: ""
+  btn_scn17_ent: "empty.empty"
+  btn_scn17_srv: "scene.turn_on"
+
+  btn_scn18_txt: ""
+  btn_scn18_ico: ""
+  btn_scn18_ent: "empty.empty"
+  btn_scn18_srv: "scene.turn_on"
+
+  btn_scn21_txt: ""
+  btn_scn21_ico: ""
+  btn_scn21_ent: "empty.empty"
+  btn_scn21_srv: "scene.turn_on"
+
+  btn_scn22_txt: ""
+  btn_scn22_ico: ""
+  btn_scn22_ent: "empty.empty"
+  btn_scn22_srv: "scene.turn_on"
+
+  btn_scn23_txt: ""
+  btn_scn23_ico: ""
+  btn_scn23_ent: "empty.empty"
+  btn_scn23_srv: "scene.turn_on"
+
+  btn_scn24_txt: ""
+  btn_scn24_ico: ""
+  btn_scn24_ent: "empty.empty"
+  btn_scn24_srv: "scene.turn_on"
+
+  btn_scn25_txt: ""
+  btn_scn25_ico: ""
+  btn_scn25_ent: "empty.empty"
+  btn_scn25_srv: "scene.turn_on"
+
+  btn_scn26_txt: ""
+  btn_scn26_ico: ""
+  btn_scn26_ent: "empty.empty"
+  btn_scn26_srv: "scene.turn_on"
+
+  btn_scn27_txt: ""
+  btn_scn27_ico: ""
+  btn_scn27_ent: "empty.empty"
+  btn_scn27_srv: "scene.turn_on"
+
+  btn_scn28_txt: ""
+  btn_scn28_ico: ""
+  btn_scn28_ent: "empty.empty"
+  btn_scn28_srv: "scene.turn_on"
+
+  btn_misc1_txt: "Soldering"
+  btn_misc1_ico: "u"
+  btn_misc1_ent: "switch.office_lab_soldering_iron"
+  btn_misc1_srv: "switch.toggle"
+
+  btn_misc2_txt: "Lab Power"
+  btn_misc2_ico: "X"
+  btn_misc2_ent: "switch.office_lab_lab_powersupply"
+  btn_misc2_srv: "switch.toggle"
+
+  btn_misc3_txt: "Dashboard"
+  btn_misc3_ico: "S"
+  btn_misc3_ent: "switch.uhr_buro"
+  btn_misc3_srv: "switch.toggle"
+
+  btn_misc4_txt: "Laptop"
+  btn_misc4_ico: "J"
+  btn_misc4_ent: "switch.mixer_laptop_arbeit"
+  btn_misc4_srv: "switch.toggle"
+
+  btn_misc5_txt: "Manual"
+  btn_misc5_ico: "y"
+  btn_misc5_ent: "input_boolean.manual_mode_office"
+  btn_misc5_srv: "input_boolean.toggle"
+
+  btn_misc6_txt: ""
+  btn_misc6_ico: ""
+  btn_misc6_ent: "empty.empty"
+  btn_misc6_srv: "switch.toggle"
+
+  btn_misc7_txt: ""
+  btn_misc7_ico: ""
+  btn_misc7_ent: "empty.empty"
+  btn_misc7_srv: "switch.toggle"
+
+  btn_misc8_txt: ""
+  btn_misc8_ico: ""
+  btn_misc8_ent: "empty.empty"
+  btn_misc8_srv: "switch.toggle"
+
+  btn_clim1_txt: "Fan"
+  btn_clim1_ico: "R"
+  btn_clim1_ent: "switch.fan"
+  btn_clim1_srv: "switch.toggle"
+
+  btn_clim2_txt: ""
+  btn_clim2_ico: ""
+  btn_clim2_ent: "empty.empty"
+  btn_clim2_srv: "switch.toggle"
+
+  btn_clim3_txt: ""
+  btn_clim3_ico: ""
+  btn_clim3_ent: "empty.empty"
+  btn_clim3_srv: "switch.toggle"
+
+  btn_clim4_txt: ""
+  btn_clim4_ico: ""
+  btn_clim4_ent: "empty.empty"
+  btn_clim4_srv: "switch.toggle"
+
+  info_text: 'Guest Wifi\r\nSSID: GuestWifi\nPassword: 12345678'
   info_qr: "ABC12345678"
 
 <<: !include includes/_index.yaml

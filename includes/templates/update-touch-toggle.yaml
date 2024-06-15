@@ -1,0 +1,30 @@
+if:
+  condition:
+    # name_btn_scn21 is not empty
+    lambda: |
+      auto btn_txt = "${btn_txt}";
+      return strlen(btn_txt) > 0;
+  then:
+    # set button text and show button
+    - lambda: |
+        if(id(sensor_${idx}).state == "on") {
+          // Render button as active
+          id(disp).set_component_foreground_color("btn_${idx}_txt", 65535);
+          id(disp).set_component_foreground_color("btn_${idx}_ico", 65535);
+        } else {
+          id(disp).set_component_foreground_color("btn_${idx}_txt", 21162);
+          id(disp).set_component_foreground_color("btn_${idx}_ico", 21162);
+        }
+        id(disp).set_component_text("btn_${idx}_txt", "${btn_txt}");
+        id(disp).set_component_text("btn_${idx}_ico", "${btn_ico}");
+        id(disp).send_command("vis btn_${idx},1");
+        id(disp).send_command("vis btn_${idx}_bck,1");
+        id(disp).send_command("vis btn_${idx}_txt,1");
+        id(disp).send_command("vis btn_${idx}_ico,1");
+  else:
+    # hide button
+    - lambda: |
+        id(disp).send_command("vis btn_${idx},0");
+        id(disp).send_command("vis btn_${idx}_bck,0");
+        id(disp).send_command("vis btn_${idx}_txt,0");
+        id(disp).send_command("vis btn_${idx}_ico,0");

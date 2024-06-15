@@ -35,7 +35,9 @@ display:
     touch_sleep_timeout: 30
     on_setup:
       then:
-        - lambda: id(disp).send_command_printf("lcd_dev fffb 0002 0000 0020"); # Magic command to avoid 32pixel touchscreen offset on NSPanel (https://github.com/UNUF/nxt-doc/blob/main/Protocols/Full%20Instruction%20Set.md#readme)
+        - lambda: |
+            id(disp).send_command_printf("lcd_dev fffb 0002 0000 0020"); // Magic command to avoid 32pixel touchscreen offset on NSPanel (https://github.com/UNUF/nxt-doc/blob/main/Protocols/Full%20Instruction%20Set.md#readme)
+            id(disp).send_command_printf("page home");
     on_page:
       then: !include page-change-on.yaml
 
@@ -112,8 +114,10 @@ text_sensor:
                 } else
                 // Page Climate
                 if (component == "slidehea") {
+                  ESP_LOGD("text_sensor.display_touch_event", "Heating Temp: %s", value.c_str());
                   heating_temp->publish_state(std::stof(value));
                 } else if(component == "slidecov") {
+                  ESP_LOGD("text_sensor.display_touch_event", "Blinds Position: %s", value.c_str());
                   blinds_position->publish_state(std::stof(value));
                 } else if (component == "buttonch") {
                   // touch_btn_climate_1->publish_state(true);

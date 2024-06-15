@@ -1,17 +1,4 @@
 binary_sensor:
-  - platform: template
-    name: Hardware Left Button Short
-    id: hw_btn_left_short
-  - platform: template
-    name: Hardware Left Button Long
-    id: hw_btn_left_long
-  - platform: template
-    name: Hardware Right Button Short
-    id: hw_btn_right_short
-  - platform: template
-    name: Hardware Right Button Long
-    id: hw_btn_right_long
-
   - platform: gpio
     id: hw_btn_left
     pin:

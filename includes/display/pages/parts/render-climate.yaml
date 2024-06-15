@@ -1,0 +1,22 @@
+if:
+  condition:
+    lambda: 'return current_page->state == "climate";'
+  then:
+    - lambda: |
+        id(disp).set_component_text("heat_current", id(heat_temp).state.c_str());
+        id(disp).set_component_value("heat_slide", atoi(id(heat_temp).state.c_str()));
+
+        id(disp).set_component_text("blinds_current",  id(blinds_pos).state.c_str());
+        id(disp).set_component_value("blinds_slide",  atoi(id(blinds_pos).state.c_str()));
+
+        if(id(heat_power).state == "heat") {
+          id(disp).set_component_text("btn_heat_txt", "Heating");
+        } else {
+          id(disp).set_component_text("btn_heat_txt", "Idle");
+        }
+
+        if(atoi(id(blinds_pos).state.c_str()) == 0) {
+          id(disp).set_component_text("btn_blinds_txt", "Closed");
+        } else {
+          id(disp).set_component_text("btn_blinds_txt", "Open");
+        }
