@@ -76,6 +76,7 @@ text_sensor:
                   current_page->publish_state(page);
                 }
               } else {
+
                 // Page 1
                 if(component == "button11") {
                   touch_btn_scene_1_1->publish_state(true);
@@ -94,6 +95,7 @@ text_sensor:
                 } else if (component == "button18") {
                   touch_btn_scene_1_8->publish_state(true);
                 } else
+
                 // Page 2
                 if (component == "button21") {
                   touch_btn_scene_2_1->publish_state(true);
@@ -112,6 +114,7 @@ text_sensor:
                 } else if (component == "button28") {
                   touch_btn_scene_2_8->publish_state(true);
                 } else
+
                 // Page Climate
                 if (component == "slidehea") {
                   ESP_LOGD("text_sensor.display_touch_event", "Heating Temp: %s", value.c_str());
@@ -120,9 +123,9 @@ text_sensor:
                   ESP_LOGD("text_sensor.display_touch_event", "Blinds Position: %s", value.c_str());
                   blinds_position->publish_state(std::stof(value));
                 } else if (component == "buttonch") {
-                  // touch_btn_climate_1->publish_state(true);
+                  touch_btn_climate_heat->publish_state(true);
                 } else if (component == "buttoncb") {
-                  // touch_btn_climate_1->publish_state(true);
+                  touch_btn_climate_blinds->publish_state(true);
                 } else if (component == "buttonc1") {
                   touch_btn_climate_1->publish_state(true);
                 } else if (component == "buttonc2") {
@@ -132,6 +135,7 @@ text_sensor:
                 } else if (component == "buttonc4") {
                   touch_btn_climate_4->publish_state(true);
                 } else
+
                 // Page Misc
                 if (component == "buttonm1") {
                   touch_btn_misc_1->publish_state(true);

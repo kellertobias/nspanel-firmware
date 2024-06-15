@@ -3,9 +3,17 @@ if:
     lambda: 'return current_page->state == "home";'
   then:
     - lambda: |
-        id(disp).set_component_text("room_temp", id(room_temp).state.c_str());
-        id(disp).set_component_text("room_humid",  id(room_humidity).state.c_str());
-        id(disp).set_component_text("weather_temp", id(weather_temp).state.c_str());
+        char room_temp_format[10];
+        char room_humid_format[10];
+        char weather_temp_format[10];
+
+        sprintf(room_temp_format, "%s°C", id(room_temp).state.c_str());
+        sprintf(room_humid_format, "%s%%", id(room_humidity).state.c_str());
+        sprintf(weather_temp_format, "%s°C", id(weather_temp).state.c_str());
+
+        id(disp).set_component_text("room_temp", room_temp_format);
+        id(disp).set_component_text("room_humid",  room_humid_format);
+        id(disp).set_component_text("weather_temp", weather_temp_format);
         id(disp).set_component_text("weather_rain", "");
         id(disp).set_component_text("weather_precip", "");
 

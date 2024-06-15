@@ -10,6 +10,11 @@ sensor:
             data:
               entity_id: ${sensor_entity_heating_temp}
               temperature: !lambda "return x;"
+        - homeassistant.service:
+            service: climate.set_hvac_mode
+            data:
+              entity_id: ${sensor_entity_heating_enable}
+              hvac_mode: "heat"
 
   - id: blinds_position
     platform: template
@@ -18,14 +23,17 @@ sensor:
         # Log new position
         - logger.log: "Blinds Position set for '${sensor_entity_blinds_position}'"
         - homeassistant.service:
-            service: "cover.set_cover_position"
+            service: cover.set_cover_position
             data:
               entity_id: ${sensor_entity_blinds_position}
-              position: !lambda "return x;"
+              position: !lambda |
+                int val = (int) x;
+                ESP_LOGD("interface", "Current State: %d", val);
+                return val;
 
 binary_sensor:
   - platform: template
-    name: Hardware Left Button Short
+    internal: true
     id: hw_btn_left_short
     on_state:
       then:
@@ -39,7 +47,7 @@ binary_sensor:
                     entity_id: ${hwbtn_left_short_ent}
 
   - platform: template
-    name: Hardware Left Button Long
+    internal: true
     id: hw_btn_left_long
     on_state:
       then:
@@ -53,7 +61,7 @@ binary_sensor:
                     entity_id: ${hwbtn_left_long_ent}
 
   - platform: template
-    name: Hardware Right Button Short
+    internal: true
     id: hw_btn_right_short
     on_state:
       then:
@@ -67,7 +75,7 @@ binary_sensor:
                     entity_id: ${hwbtn_right_short_ent}
 
   - platform: template
-    name: Hardware Right Button Long
+    internal: true
     id: hw_btn_right_long
     on_state:
       then:
@@ -81,319 +89,473 @@ binary_sensor:
                     entity_id: ${hwbtn_right_long_ent}
 
   - platform: template
+    internal: true
     id: touch_btn_scene_1_1
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_scn11_srv}
-            data:
-              entity_id: ${btn_scn11_ent}
-        - lambda: id(touch_btn_scene_1_1).publish_state(false);
-        - script.execute: render_scenes1
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_scn11_srv}
+                  data:
+                    entity_id: ${btn_scn11_ent}
+              - lambda: id(touch_btn_scene_1_1).publish_state(false);
+              - script.execute: render_scenes1
   - platform: template
+    internal: true
     id: touch_btn_scene_1_2
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_scn11_srv}
-            data:
-              entity_id: ${btn_scn12_ent}
-        - lambda: id(touch_btn_scene_1_2).publish_state(false);
-        - script.execute: render_scenes1
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_scn11_srv}
+                  data:
+                    entity_id: ${btn_scn12_ent}
+              - lambda: id(touch_btn_scene_1_2).publish_state(false);
+              - script.execute: render_scenes1
   - platform: template
+    internal: true
     id: touch_btn_scene_1_3
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_scn13_srv}
-            data:
-              entity_id: ${btn_scn13_ent}
-        - lambda: id(touch_btn_scene_1_3).publish_state(false);
-        - script.execute: render_scenes1
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_scn13_srv}
+                  data:
+                    entity_id: ${btn_scn13_ent}
+              - lambda: id(touch_btn_scene_1_3).publish_state(false);
+              - script.execute: render_scenes1
   - platform: template
+    internal: true
     id: touch_btn_scene_1_4
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_scn14_srv}
-            data:
-              entity_id: ${btn_scn14_ent}
-        - lambda: id(touch_btn_scene_1_4).publish_state(false);
-        - script.execute: render_scenes1
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_scn14_srv}
+                  data:
+                    entity_id: ${btn_scn14_ent}
+              - lambda: id(touch_btn_scene_1_4).publish_state(false);
+              - script.execute: render_scenes1
   - platform: template
+    internal: true
     id: touch_btn_scene_1_5
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_scn15_srv}
-            data:
-              entity_id: ${btn_scn15_ent}
-        - lambda: id(touch_btn_scene_1_5).publish_state(false);
-        - script.execute: render_scenes1
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_scn15_srv}
+                  data:
+                    entity_id: ${btn_scn15_ent}
+              - lambda: id(touch_btn_scene_1_5).publish_state(false);
+              - script.execute: render_scenes1
   - platform: template
+    internal: true
     id: touch_btn_scene_1_6
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_scn16_srv}
-            data:
-              entity_id: ${btn_scn16_ent}
-        - lambda: id(touch_btn_scene_1_6).publish_state(false);
-        - script.execute: render_scenes1
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_scn16_srv}
+                  data:
+                    entity_id: ${btn_scn16_ent}
+              - lambda: id(touch_btn_scene_1_6).publish_state(false);
+              - script.execute: render_scenes1
   - platform: template
+    internal: true
     id: touch_btn_scene_1_7
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_scn17_srv}
-            data:
-              entity_id: ${btn_scn17_ent}
-        - lambda: id(touch_btn_scene_1_7).publish_state(false);
-        - script.execute: render_scenes1
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_scn17_srv}
+                  data:
+                    entity_id: ${btn_scn17_ent}
+              - lambda: id(touch_btn_scene_1_7).publish_state(false);
+              - script.execute: render_scenes1
   - platform: template
+    internal: true
     id: touch_btn_scene_1_8
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_scn18_srv}
-            data:
-              entity_id: ${btn_scn18_ent}
-        - lambda: id(touch_btn_scene_1_8).publish_state(false);
-        - script.execute: render_scenes1
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_scn18_srv}
+                  data:
+                    entity_id: ${btn_scn18_ent}
+              - lambda: id(touch_btn_scene_1_8).publish_state(false);
+              - script.execute: render_scenes1
   - platform: template
+    internal: true
     id: touch_btn_scene_2_1
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_scn21_srv}
-            data:
-              entity_id: ${btn_scn21_ent}
-        - lambda: id(touch_btn_scene_2_1).publish_state(false);
-        - script.execute: render_scenes2
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_scn21_srv}
+                  data:
+                    entity_id: ${btn_scn21_ent}
+              - lambda: id(touch_btn_scene_2_1).publish_state(false);
+              - script.execute: render_scenes2
   - platform: template
+    internal: true
     id: touch_btn_scene_2_2
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_scn22_srv}
-            data:
-              entity_id: ${btn_scn22_ent}
-        - lambda: id(touch_btn_scene_2_2).publish_state(false);
-        - script.execute: render_scenes2
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_scn22_srv}
+                  data:
+                    entity_id: ${btn_scn22_ent}
+              - lambda: id(touch_btn_scene_2_2).publish_state(false);
+              - script.execute: render_scenes2
   - platform: template
+    internal: true
     id: touch_btn_scene_2_3
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_scn23_srv}
-            data:
-              entity_id: ${btn_scn23_ent}
-        - lambda: id(touch_btn_scene_2_3).publish_state(false);
-        - script.execute: render_scenes2
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_scn23_srv}
+                  data:
+                    entity_id: ${btn_scn23_ent}
+              - lambda: id(touch_btn_scene_2_3).publish_state(false);
+              - script.execute: render_scenes2
   - platform: template
+    internal: true
     id: touch_btn_scene_2_4
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_scn24_srv}
-            data:
-              entity_id: ${btn_scn24_ent}
-        - lambda: id(touch_btn_scene_2_4).publish_state(false);
-        - script.execute: render_scenes2
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_scn24_srv}
+                  data:
+                    entity_id: ${btn_scn24_ent}
+              - lambda: id(touch_btn_scene_2_4).publish_state(false);
+              - script.execute: render_scenes2
   - platform: template
+    internal: true
     id: touch_btn_scene_2_5
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_scn25_srv}
-            data:
-              entity_id: ${btn_scn25_ent}
-        - lambda: id(touch_btn_scene_2_5).publish_state(false);
-        - script.execute: render_scenes2
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_scn25_srv}
+                  data:
+                    entity_id: ${btn_scn25_ent}
+              - lambda: id(touch_btn_scene_2_5).publish_state(false);
+              - script.execute: render_scenes2
   - platform: template
+    internal: true
     id: touch_btn_scene_2_6
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_scn26_srv}
-            data:
-              entity_id: ${btn_scn26_ent}
-        - lambda: id(touch_btn_scene_2_6).publish_state(false);
-        - script.execute: render_scenes2
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_scn26_srv}
+                  data:
+                    entity_id: ${btn_scn26_ent}
+              - lambda: id(touch_btn_scene_2_6).publish_state(false);
+              - script.execute: render_scenes2
   - platform: template
+    internal: true
     id: touch_btn_scene_2_7
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_scn27_srv}
-            data:
-              entity_id: ${btn_scn27_ent}
-        - lambda: id(touch_btn_scene_2_7).publish_state(false);
-        - script.execute: render_scenes2
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_scn27_srv}
+                  data:
+                    entity_id: ${btn_scn27_ent}
+              - lambda: id(touch_btn_scene_2_7).publish_state(false);
+              - script.execute: render_scenes2
   - platform: template
+    internal: true
     id: touch_btn_scene_2_8
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_scn28_srv}
-            data:
-              entity_id: ${btn_scn28_ent}
-        - lambda: id(touch_btn_scene_2_8).publish_state(false);
-        - script.execute: render_scenes2
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_scn28_srv}
+                  data:
+                    entity_id: ${btn_scn28_ent}
+              - lambda: id(touch_btn_scene_2_8).publish_state(false);
+              - script.execute: render_scenes2
   - platform: template
+    internal: true
     id: touch_btn_climate_1
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_clim1_srv}
-            data:
-              entity_id: ${btn_clim1_ent}
-        - lambda: id(touch_btn_climate_1).publish_state(false);
-        - script.execute: render_climate
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_clim1_srv}
+                  data:
+                    entity_id: ${btn_clim1_ent}
+              - lambda: id(touch_btn_climate_1).publish_state(false);
+              - script.execute: render_climate
   - platform: template
+    internal: true
     id: touch_btn_climate_2
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_clim2_srv}
-            data:
-              entity_id: ${btn_clim2_ent}
-        - lambda: id(touch_btn_climate_2).publish_state(false);
-        - script.execute: render_climate
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_clim2_srv}
+                  data:
+                    entity_id: ${btn_clim2_ent}
+              - lambda: id(touch_btn_climate_2).publish_state(false);
+              - script.execute: render_climate
   - platform: template
+    internal: true
     id: touch_btn_climate_3
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_clim3_srv}
-            data:
-              entity_id: ${btn_clim3_ent}
-        - lambda: id(touch_btn_climate_3).publish_state(false);
-        - script.execute: render_climate
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_clim3_srv}
+                  data:
+                    entity_id: ${btn_clim3_ent}
+              - lambda: id(touch_btn_climate_3).publish_state(false);
+              - script.execute: render_climate
   - platform: template
+    internal: true
     id: touch_btn_climate_4
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_clim4_srv}
-            data:
-              entity_id: ${btn_clim4_ent}
-        - lambda: id(touch_btn_climate_4).publish_state(false);
-        - script.execute: render_climate
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_clim4_srv}
+                  data:
+                    entity_id: ${btn_clim4_ent}
+              - lambda: id(touch_btn_climate_4).publish_state(false);
+              - script.execute: render_climate
   - platform: template
+    internal: true
     id: touch_btn_climate_heat
     on_state:
       then:
-        # Log new position
-        - logger.log: "Toggling Heat '${sensor_entity_heating_enable}'"
-        - homeassistant.service:
-            service: climate.set_temperature
-            data:
-              entity_id: ${sensor_entity_heating_enable}
-              hvac_mode: !lambda |
-                if (!x) {
-                  return "heat";
-                } else {
-                  return "off";
-                }
-        - lambda: id(touch_btn_climate_heat).publish_state(false);
-        - script.execute: render_climate
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              # Log new position
+              - logger.log: "Toggling Heat '${sensor_entity_heating_enable}'"
+              - homeassistant.service:
+                  service: climate.set_hvac_mode
+                  data:
+                    entity_id: ${sensor_entity_heating_enable}
+                    hvac_mode: !lambda |
+                      if (id(heat_power).state == "off") {
+                        ESP_LOGD("interface", "Setting to HEAT");
+                        return "heat";
+                      } else {
+                        ESP_LOGD("interface", "Setting to OFF");
+                        return "off";
+                      }
+              - lambda: id(touch_btn_climate_heat).publish_state(false);
+              - script.execute: render_climate
 
   - platform: template
+    internal: true
     id: touch_btn_climate_blinds
     on_state:
       then:
-        # Log new position
-        - logger.log: "Toggling Blinds '${sensor_entity_blinds_position}'"
-        - homeassistant.service:
-            service: "cover.set_cover_position"
-            data:
-              entity_id: ${sensor_entity_blinds_position}
-              position: !lambda |
-                if (!x) {
-                  return "0";
-                } else {
-                  return "100";
-                }
-        - lambda: id(touch_btn_climate_blinds).publish_state(false);
-        - script.execute: render_climate
+        if:
+          condition:
+            lambda: "return x;"
+          then:
+            # Log new position
+            - logger.log: "Toggling Blinds '${sensor_entity_blinds_position}'"
+            - homeassistant.service:
+                service: "cover.set_cover_position"
+                data:
+                  entity_id: ${sensor_entity_blinds_position}
+                  position: !lambda |
+                    if (atoi(id(blinds_pos).state.c_str()) == 0) {
+                      ESP_LOGD("interface", "Setting to OPEN");
+                      return 100;
+                    } else {
+                      ESP_LOGD("interface", "Setting to CLOSE");
+                      return 0;
+                    }
+            - lambda: id(touch_btn_climate_blinds).publish_state(false);
+            - script.execute: render_climate
   - platform: template
+    internal: true
     id: touch_btn_misc_1
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_misc1_srv}
-            data:
-              entity_id: ${btn_misc1_ent}
-        - lambda: id(touch_btn_misc_1).publish_state(false);
-        - script.execute: render_misc
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_misc1_srv}
+                  data:
+                    entity_id: ${btn_misc1_ent}
+              - lambda: id(touch_btn_misc_1).publish_state(false);
+              - script.execute: render_misc
   - platform: template
+    internal: true
     id: touch_btn_misc_2
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_misc2_srv}
-            data:
-              entity_id: ${btn_misc2_ent}
-        - lambda: id(touch_btn_misc_2).publish_state(false);
-        - script.execute: render_misc
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_misc2_srv}
+                  data:
+                    entity_id: ${btn_misc2_ent}
+              - lambda: id(touch_btn_misc_2).publish_state(false);
+              - script.execute: render_misc
   - platform: template
+    internal: true
     id: touch_btn_misc_3
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_misc3_srv}
-            data:
-              entity_id: ${btn_misc3_ent}
-        - lambda: id(touch_btn_misc_3).publish_state(false);
-        - script.execute: render_misc
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_misc3_srv}
+                  data:
+                    entity_id: ${btn_misc3_ent}
+              - lambda: id(touch_btn_misc_3).publish_state(false);
+              - script.execute: render_misc
   - platform: template
+    internal: true
     id: touch_btn_misc_4
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_misc4_srv}
-            data:
-              entity_id: ${btn_misc4_ent}
-        - lambda: id(touch_btn_misc_4).publish_state(false);
-        - script.execute: render_misc
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_misc4_srv}
+                  data:
+                    entity_id: ${btn_misc4_ent}
+              - lambda: id(touch_btn_misc_4).publish_state(false);
+              - script.execute: render_misc
   - platform: template
+    internal: true
     id: touch_btn_misc_5
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_misc5_srv}
-            data:
-              entity_id: ${btn_misc5_ent}
-        - lambda: id(touch_btn_misc_5).publish_state(false);
-        - script.execute: render_misc
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_misc5_srv}
+                  data:
+                    entity_id: ${btn_misc5_ent}
+              - lambda: id(touch_btn_misc_5).publish_state(false);
+              - script.execute: render_misc
   - platform: template
+    internal: true
     id: touch_btn_misc_6
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_misc6_srv}
-            data:
-              entity_id: ${btn_misc6_ent}
-        - lambda: id(touch_btn_misc_6).publish_state(false);
-        - script.execute: render_misc
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_misc6_srv}
+                  data:
+                    entity_id: ${btn_misc6_ent}
+              - lambda: id(touch_btn_misc_6).publish_state(false);
+              - script.execute: render_misc
   - platform: template
+    internal: true
     id: touch_btn_misc_7
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_misc7_srv}
-            data:
-              entity_id: ${btn_misc7_ent}
-        - lambda: id(touch_btn_misc_7).publish_state(false);
-        - script.execute: render_misc
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_misc7_srv}
+                  data:
+                    entity_id: ${btn_misc7_ent}
+              - lambda: id(touch_btn_misc_7).publish_state(false);
+              - script.execute: render_misc
   - platform: template
+    internal: true
     id: touch_btn_misc_8
     on_state:
       then:
-        - homeassistant.service:
-            service: ${btn_misc8_srv}
-            data:
-              entity_id: ${btn_misc8_ent}
-        - lambda: id(touch_btn_misc_8).publish_state(false);
-        - script.execute: render_misc
+        - if:
+            condition:
+              lambda: "return x;"
+            then:
+              - homeassistant.service:
+                  service: ${btn_misc8_srv}
+                  data:
+                    entity_id: ${btn_misc8_ent}
+              - lambda: id(touch_btn_misc_8).publish_state(false);
+              - script.execute: render_misc

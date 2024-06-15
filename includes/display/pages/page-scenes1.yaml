@@ -84,7 +84,6 @@ script:
                 else:
                   - lambda: |
                       ESP_LOGD("nextion.render", "Having NO second page!");
-
                       id(disp).send_command("vis btn_more_bck,0");
                       id(disp).send_command("vis btn_more_ico,0");
                       id(disp).send_command("vis btn_more_txt,0");

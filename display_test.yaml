@@ -12,7 +12,7 @@ substitutions:
   sensor_entity_room_temp: sensor.climate_livingroom_temperature
   sensor_entity_room_humidity: sensor.climate_livingroom_humidity
   sensor_entity_weather_temp: weather.forecast_home # use attribute temperature
-  sensor_entity_weather_rain: "empty.empty"
+  sensor_entity_weather_rain: empty.empty
   sensor_entity_weather_state: weather.forecast_home # use state
 
   sensor_entity_heating_temp: climate.heizung_buro # use attribute temperature
@@ -20,18 +20,18 @@ substitutions:
   sensor_entity_blinds_position: cover.blinds_office_cover
 
   # hardware buttons
-  hwbtn_left: "Night/ Day Mode"
-  hwbtn_right: "Room Light"
+  hwbtn_left: "Solder/ Lab Power"
+  hwbtn_right: "Good Morning"
 
-  hwbtn_left_short_ent: "scene.buro_arbeiten_nacht"
-  hwbtn_left_short_srv: "scene.turn_on"
-  hwbtn_left_long_ent: "scene.buro_arbeiten_tag"
-  hwbtn_left_long_srv: "scene.turn_on"
+  hwbtn_left_short_ent: "switch.office_lab_soldering_iron"
+  hwbtn_left_short_srv: "switch.toggle"
+  hwbtn_left_long_ent: "scene.office_lab_lab_powersupply"
+  hwbtn_left_long_srv: "switch.toggle"
 
-  hwbtn_right_short_ent: "scene.buro_arbeiten_nacht"
-  hwbtn_right_short_srv: "scene.turn_on"
-  hwbtn_right_long_ent: "scene.buro_arbeiten_tag"
-  hwbtn_right_long_srv: "scene.turn_on"
+  hwbtn_right_short_ent: "script.good_morning"
+  hwbtn_right_short_srv: "script.good_morning"
+  hwbtn_right_long_ent: "script.good_morning"
+  hwbtn_right_long_srv: "script.good_morning"
 
   # Scene Buttons & Icons
   btn_scn11_txt: "All Off"
@@ -46,17 +46,17 @@ substitutions:
 
   btn_scn13_txt: "Conference"
   btn_scn13_ico: "U"
-  btn_scn13_ent: "scene.buro_konferenz"
+  btn_scn13_ent: "scene.video_call"
   btn_scn13_srv: "scene.turn_on"
 
   btn_scn14_txt: "Evening"
   btn_scn14_ico: "O"
-  btn_scn14_ent: "scene.buro_arbeiten_nacht"
+  btn_scn14_ent: "scene.buro_arbeiten_tag_2"
   btn_scn14_srv: "scene.turn_on"
 
   btn_scn15_txt: "Working"
   btn_scn15_ico: "N"
-  btn_scn15_ent: "scene.buro_cleaning"
+  btn_scn15_ent: "scene.buro_working"
   btn_scn15_srv: "scene.turn_on"
 
   btn_scn16_txt: ""
@@ -174,7 +174,7 @@ substitutions:
   btn_clim4_ent: "empty.empty"
   btn_clim4_srv: "switch.toggle"
 
-  info_text: 'Guest Wifi\r\nSSID: GuestWifi\nPassword: 12345678'
-  info_qr: "ABC12345678"
+  info_text: 'Guest Wifi<br/>SSID: GuestWifi\nPassword: 12345678'
+  info_qr: "wifi:S:/dev/guests;T:WPA;P:flyMeToTheMoon;H:false;;"
 
 <<: !include includes/_index.yaml

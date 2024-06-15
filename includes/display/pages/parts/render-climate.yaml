@@ -3,10 +3,30 @@ if:
     lambda: 'return current_page->state == "climate";'
   then:
     - lambda: |
-        id(disp).set_component_text("heat_current", id(heat_temp).state.c_str());
-        id(disp).set_component_value("heat_slide", atoi(id(heat_temp).state.c_str()));
+        char heat_temp_format[10];
+        char blinds_pos_format[10];
+        int blinds_pos_int = atoi(id(blinds_pos).state.c_str());
+        double heat_temp_double = atof(id(heat_temp).state.c_str());
 
-        id(disp).set_component_text("blinds_current",  id(blinds_pos).state.c_str());
+        if(heat_temp_double <= 0) {
+          sprintf(heat_temp_format, "Off");
+        } else {
+          sprintf(heat_temp_format, "%.1f C", heat_temp_double);
+        } 
+
+        if(blinds_pos_int == 0) {
+          sprintf(blinds_pos_format, "Closed");
+        } else if(blinds_pos_int == 100) {
+          sprintf(blinds_pos_format, "Open");
+        } else {
+          sprintf(blinds_pos_format, "%d%%", blinds_pos_int);
+        }
+
+
+        id(disp).set_component_text("heat_current", heat_temp_format);
+        id(disp).set_component_text("blinds_current", blinds_pos_format);
+
+        id(disp).set_component_value("heat_slide", atoi(id(heat_temp).state.c_str()));
         id(disp).set_component_value("blinds_slide",  atoi(id(blinds_pos).state.c_str()));
 
         if(id(heat_power).state == "heat") {

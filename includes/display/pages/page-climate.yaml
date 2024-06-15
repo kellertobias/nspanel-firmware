@@ -6,9 +6,6 @@ script:
           condition:
             lambda: 'return current_page->state == "climate";'
           then:
-            - lambda: |
-                // TODO Render Current Temperature, Slider and Heating state
-                // TODO Render Current Blinds Position, State and Toggle Button
             - !include
               file: ../../templates/update-touch-toggle.yaml
               vars:

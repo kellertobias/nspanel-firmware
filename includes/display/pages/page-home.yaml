@@ -11,9 +11,7 @@ script:
                 id(disp).set_component_text("time_minute", id(time_source).now().strftime("%M").c_str());
                 id(disp).set_component_text("time_date", id(time_source).now().strftime("%a, %d.%m.%Y").c_str());
                 id(disp).set_component_text("time_colon", ":");
-                // TODO: Render Wifi Symbol
-                // TODO: Render Window Symbol
-                // TODO: Render Temperature & Weather
+
             - !include page-hw-buttons.yaml
             - !include parts/render-wifi.yaml
             - !include parts/render-windows.yaml
