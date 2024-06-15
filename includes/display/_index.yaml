@@ -27,7 +27,7 @@ uart:
 display:
   - platform: nextion
     id: disp
-    start_up_page: 0
+    start_up_page: 1
     exit_reparse_on_start: true
     auto_wake_on_touch: true
     uart_id: tf_uart
@@ -68,6 +68,9 @@ text_sensor:
               ESP_LOGD("text_sensor.display_touch_event", "Event: %s :: %s", page.c_str(), component.c_str());
               if(component == "page") {
                 if (current_page->state != page) {
+                  if(page == "loading") {
+                    disp->goto_page("home");
+                  }
                   current_page->publish_state(page);
                 }
               } else {

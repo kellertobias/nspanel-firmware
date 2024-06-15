@@ -9,13 +9,21 @@ script:
   - id: page_changed
     mode: restart
     then:
-      - lambda: |-
-          if (!id(is_uploading_tft)) {
-            // Report new page to logs
-            ESP_LOGD("script.page_changed", "New page: %s", current_page->state.c_str());
-            if (current_page->state.empty()) {
-              goto_page->execute("boot");
-              page_changed->stop();
-            }
-            // TODO: Add Actions that are executed on page render
-          }
+      - if:
+          condition:
+            lambda: "return !id(is_uploading_tft);"
+          then:
+            - lambda: |-
+                // Report new page to logs
+                ESP_LOGD("script.page_changed", "New page: %s", current_page->state.c_str());
+                if (current_page->state.empty()) {
+                  goto_page->execute("loading");
+                  page_changed->stop();
+                }
+            - script.execute: render_home
+            - script.execute: render_screensaver
+            - script.execute: render_misc
+            - script.execute: render_info
+            - script.execute: render_scenes1
+            - script.execute: render_scenes2
+            - script.execute: render_climate

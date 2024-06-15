@@ -26,8 +26,8 @@ text_sensor:
           x = x.c_str();
           x.shrink_to_fit();
           return x;
-    # on_value:
-    #   lambda: |-
-    #     if (!id(is_uploading_tft)) {
-    #       page_changed->execute();
-    #     }
+    on_value:
+      lambda: |-
+        if (!id(is_uploading_tft)) {
+          page_changed->execute();
+        }

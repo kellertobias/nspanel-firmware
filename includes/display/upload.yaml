@@ -9,6 +9,8 @@ api:
     - service: update_nextion
       then:
         - lambda: |
+            // Set Page to 1
+            disp->goto_page("loading");
             id(is_uploading_tft) = true;
             id(disp)->upload_tft();
     ##### Service to send a command "printf" directly to the display #####
