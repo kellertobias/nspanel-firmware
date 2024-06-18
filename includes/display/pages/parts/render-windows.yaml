@@ -7,9 +7,9 @@ if:
           lambda: 'return id(window_state).state == "on";'
         then:
           - lambda: |
-              id(disp).set_component_text("status_window", "g");
+              id(disp).set_component_text("status_window", "0");
               id(disp).set_component_foreground_color("status_window", 35921);
         else:
           - lambda: |
-              id(disp).set_component_text("status_window", "G");
+              id(disp).set_component_text("status_window", ".");
               id(disp).set_component_foreground_color("status_window", 12678);

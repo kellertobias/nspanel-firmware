@@ -34,9 +34,3 @@ wifi:
   power_save_mode: LIGHT
   ssid: ${wifi_ssid_var}
   password: ${wifi_password_var}
-  # on_connect:
-  #   then:
-  #     - script.execute: refresh_wifi_icon
-  # on_disconnect:
-  #   then:
-  #     - script.execute: refresh_wifi_icon

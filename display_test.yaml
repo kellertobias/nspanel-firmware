@@ -5,14 +5,14 @@ esphome:
 substitutions:
   wifi_ssid_var: !secret wifi_ssid
   wifi_password_var: !secret wifi_password
-  ota_password: DataNirvana2015!
+  ota_password: !secret ota_password
 
   # sensors
   sensor_entity_windows: binary_sensor.windows
   sensor_entity_room_temp: sensor.climate_livingroom_temperature
   sensor_entity_room_humidity: sensor.climate_livingroom_humidity
   sensor_entity_weather_temp: weather.forecast_home # use attribute temperature
-  sensor_entity_weather_rain: empty.empty
+  sensor_entity_weather_rain: weather.forecast_summary
   sensor_entity_weather_state: weather.forecast_home # use state
 
   sensor_entity_heating_temp: climate.heizung_buro # use attribute temperature

@@ -36,8 +36,20 @@ text_sensor:
   - platform: homeassistant
     id: weather_rain
     entity_id: ${sensor_entity_weather_rain}
+    attribute: rain
     on_value:
       then:
+        - lambda: |
+            ESP_LOGD("!!! weather rain", id(weather_rain)->state.c_str());
+        - !include pages/parts/render-weather.yaml
+  - platform: homeassistant
+    id: weather_humid
+    entity_id: ${sensor_entity_weather_rain}
+    attribute: humidity
+    on_value:
+      then:
+        - lambda: |
+            ESP_LOGD("!!! weather humid", id(weather_humid)->state.c_str());
         - !include pages/parts/render-weather.yaml
   - platform: homeassistant
     id: weather_state
