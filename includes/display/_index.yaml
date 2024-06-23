@@ -28,26 +28,70 @@ script:
   - id: touch_timer
     mode: restart
     then:
-      - delay: !lambda "return id(display_timeout)->state * 1000;"
-      - lambda: |
-          float brightness = id(display_brightness)->state;
-          if (!id(is_uploading_tft)) {
-            id(disp).set_backlight_brightness(brightness/2);
-          }
-      - delay: 2s
-      - lambda: |
-          if (!id(is_uploading_tft) ) {
-            if (current_page->state != "screensaver") {
-              id(disp).send_command_printf("page screensaver");
-            } else {
-              id(disp).set_backlight_brightness(id(display_sleep_brightness)->state);
-            }
-          }
-      - delay: 1s
-      - lambda: |
-          if (!id(is_uploading_tft)) {
-            id(disp).set_backlight_brightness(id(display_sleep_brightness)->state);
-          }
+      - if:
+          # check if currently uploading
+          condition:
+            lambda: |
+              return id(is_uploading_tft);
+          then:
+            lambda: |
+              ESP_LOGD("timer", "Updating. Skipping touch timer.");
+          else:
+            # Screensaver Page: darkening after 5s, sleep after 10s
+            - if:
+                condition:
+                  lambda: |
+                    return current_page->state == "screensaver";
+                then:
+                  - delay: 5s
+                  - lambda: |
+                      if (!id(is_uploading_tft)) {
+                        float brightness = id(display_brightness)->state;
+                        id(disp).set_backlight_brightness(brightness/2);
+                      }
+                  - delay: 5s
+                  - lambda: |
+                      if (!id(is_uploading_tft)) {
+                        id(disp).set_backlight_brightness(id(display_sleep_brightness)->state);
+                      }
+            # Info Page: home after 60s
+            - if:
+                condition:
+                  lambda: |
+                    return current_page->state == "info";
+                then:
+                  - delay: 60s
+                  - lambda: |
+                      if (!id(is_uploading_tft)) {
+                        id(disp).send_command_printf("page home");
+                      }
+            # Home Page: screensaver after set time
+            - if:
+                condition:
+                  lambda: |
+                    return current_page->state == "home";
+                then:
+                  - delay: !lambda "return id(display_timeout)->state * 1000;"
+                  - lambda: |
+                      if (!id(is_uploading_tft) ) {
+                        id(disp).send_command_printf("page screensaver");
+                      }
+
+            # All other pages: home after set time
+            - if:
+                condition:
+                  lambda: |
+                    return
+                      current_page->state != "info" &&
+                      current_page->state != "screensaver" &&
+                      current_page->state != "home"
+                    ;
+                then:
+                  - delay: !lambda "return id(display_timeout)->state * 1000;"
+                  - lambda: |
+                      if (!id(is_uploading_tft) ) {
+                        id(disp).send_command_printf("page home");
+                      }
 
 number:
   - id: display_brightness

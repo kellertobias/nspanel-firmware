@@ -1,10 +1,12 @@
-- max_length: 1.8s
+- timing:
+    - ON for at most 1s
+    - OFF for at least 0.1s
   then: !include
     file: touch_button.yaml
     vars:
       button: ${button_set}_short
-- min_length: 2s
-  max_length: 10s
+- timing:
+    - ON for at least 1.2s
   then: !include
     file: touch_button.yaml
     vars:

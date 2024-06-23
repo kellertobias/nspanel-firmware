@@ -6,7 +6,7 @@ binary_sensor:
       inverted: true
     filters:
       - delayed_on: 50ms
-    on_click: !include
+    on_multi_click: !include
       file: templates/touch_short_long.yaml
       vars:
         button_set: hw_btn_left
@@ -18,7 +18,7 @@ binary_sensor:
       inverted: true
     filters:
       - delayed_on: 50ms
-    on_click: !include
+    on_multi_click: !include
       file: templates/touch_short_long.yaml
       vars:
         button_set: hw_btn_right
